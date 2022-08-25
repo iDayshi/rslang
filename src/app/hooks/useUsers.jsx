@@ -15,9 +15,14 @@ const UserProvaider = ({ children }) => {
   const { currentUser } = useAuth();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
-    getUsers();
+    if (!isLoading) {
+      getUsers();
+    }
+    setLoading(false);
   }, []);
+
   useEffect(() => {
     if (error !== null) {
       toast(error);
@@ -54,7 +59,9 @@ const UserProvaider = ({ children }) => {
   }
   return (
     <UserContext.Provider value={{ users, getUserById }}>
-      {!isLoading ? children : "Загрузка пользователей...."}
+      {!isLoading
+        ? children
+        : "Загрузка пользователей....и супер красивый спинер"}
     </UserContext.Provider>
   );
 };

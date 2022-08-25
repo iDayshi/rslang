@@ -1,5 +1,5 @@
 import axios from "axios";
-// import localStorageService from "./localStorage.service";
+import localStorageService from "./localStorage.service";
 import configFile from "../config.json";
 
 const httpAuth = axios.create({
@@ -15,7 +15,12 @@ const authService = {
     return data;
   },
   refresh: async (userId) => {
-    const { data } = await httpAuth.get(`/users/${userId}/tokens`);
+    const data = await httpAuth.get(`/users/${userId}/tokens`, {
+      headers: {
+        Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+      }
+    });
+    console.log(data);
     return data;
   }
 };

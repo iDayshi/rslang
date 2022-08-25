@@ -5,7 +5,6 @@ const userEndpoint = "/words/";
 const wordServisece = {
   get: async () => {
     const { data } = await httpServise.get(userEndpoint);
-    console.log(data);
     return data;
   }
 };

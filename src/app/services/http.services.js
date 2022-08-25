@@ -15,11 +15,16 @@ http.interceptors.request.use(
     const isExpire = refreshToken && expiresData < Date.now();
 
     if (isExpire) {
-      const data = await authService.refresh();
+      const { data } = await authService.refresh(
+        localStorageService.getUserId()
+      );
+      console.log(data);
 
       localStorageService.setTokens(data);
     }
+
     const accessToken = localStorageService.getAccessToken();
+
     if (accessToken) {
       config.headers = {
         ...config.headers,
