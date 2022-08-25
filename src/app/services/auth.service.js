@@ -20,7 +20,6 @@ const authService = {
         Authorization: `Bearer ${localStorageService.getRefreshToken()}`
       }
     });
-    console.log(data);
     return data;
   }
 };

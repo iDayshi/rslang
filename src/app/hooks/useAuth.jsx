@@ -44,7 +44,6 @@ const AuthProvaider = ({ children }) => {
   }
 
   async function signIn({ email, password }) {
-    console.log({ email, password });
     try {
       const data = await authService.login({ email, password });
       setTokens(data);

@@ -18,7 +18,6 @@ http.interceptors.request.use(
       const { data } = await authService.refresh(
         localStorageService.getUserId()
       );
-      console.log(data);
 
       localStorageService.setTokens(data);
     }

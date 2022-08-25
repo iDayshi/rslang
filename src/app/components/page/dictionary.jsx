@@ -1,51 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { useWord } from "../../hooks/useWords";
+import GroupWords from "../groupWords";
+import Pagination from "../pagination";
+import CardWord from "../ui/cardsWord";
 
 const DictionaryPage = () => {
-  const { words } = useWord();
+  const { words, getWords } = useWord();
+  const [currentGroup, setCurrentGroup] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
+    getWords(currentGroup, Number(pageIndex) - 1);
+  };
+
+  const handleGroupChange = (groupIndex) => {
+    setCurrentPage(1);
+    setCurrentGroup(groupIndex);
+    getWords(groupIndex, 0);
+  };
+
   console.log(words);
   return (
-    <div className="container">
+    <div className="d-flex flex-column align-items-center justify-content-center m-5">
       <h1 className="text-center">Учебник</h1>
-      <div className="row gutters-sm">
-        <div className="container">
+      <GroupWords onGroupChange={handleGroupChange} />
+      <div className="row gutters-sm w-100">
+        <div className="container ">
           <div className="card-deck row">
-            {words.map((word) => {
-              return (
-                <div key={word.id} className="col-xs-12 col-sm-6 col-md-4">
-                  <div className="card">
-                    <div className="view overlay">
-                      <img
-                        className="card-img-top"
-                        src={`http://localhost:8080/${word.image}`}
-                        alt={word.word}
-                      />
-                      <a href="#!">
-                        <div className="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-
-                    <div className="card-body">
-                      <h4 className="card-title">
-                        {word.word} | {word.wordTranslate}
-                      </h4>
-                      <p
-                        className="card-text"
-                        dangerouslySetInnerHTML={{ __html: word.textExample }}
-                      ></p>
-                      <button
-                        type="button"
-                        className="btn btn-light-blue btn-md"
-                      >
-                        Read more
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <CardWord selectWords={words} />
           </div>
         </div>
+        <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
       </div>
     </div>
   );
