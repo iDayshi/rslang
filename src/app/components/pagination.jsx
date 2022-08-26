@@ -14,7 +14,10 @@ const Pagination = ({ onPageChange, currentPage }) => {
             className={"page-item " + (page === currentPage ? "active" : "")}
             key={"page_" + page}
           >
-            <button className="page-link" onClick={() => onPageChange(page)}>
+            <button
+              className="page-link"
+              onClick={() => onPageChange(page - 1)}
+            >
               {page}
             </button>
           </li>
