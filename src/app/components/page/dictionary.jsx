@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import { useWord } from "../../hooks/useWords";
 import GroupWords from "../groupWords";
 import Pagination from "../pagination";
-import CardWord from "../ui/cardsWord";
+import CardWordList from "../ui/wordCardsList";
 
 const DictionaryPage = () => {
-  const { words, getWords } = useWord();
+  const { words, getWords, wordsUser, getAllWordsUser, isLoading } = useWord();
   const [currentGroup, setCurrentGroup] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
-    getWords(currentGroup, Number(pageIndex) - 1);
+    getWords(currentGroup, pageIndex);
   };
 
   const handleGroupChange = (groupIndex) => {
-    setCurrentPage(1);
+    setCurrentPage(0);
     setCurrentGroup(groupIndex);
-    getWords(groupIndex, 0);
+    groupIndex === 6 ? getAllWordsUser() : getWords(groupIndex, 0);
   };
 
-  console.log("dictionary", words);
   return (
     <div className="d-flex flex-column align-items-center justify-content-center m-5">
       <h1 className="text-center">Учебник</h1>
@@ -28,10 +27,25 @@ const DictionaryPage = () => {
       <div className="row gutters-sm w-100">
         <div className="container ">
           <div className="card-deck row">
-            <CardWord selectWords={words} />
+            {!isLoading ? (
+              <CardWordList
+                selectWords={currentGroup !== 6 ? words : wordsUser}
+              />
+            ) : (
+              <div className="spinner-border text-info" role="status">
+                <span className="sr-only">Загрузка...</span>
+              </div>
+            )}
           </div>
         </div>
-        <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
+        {currentGroup !== 6 ? (
+          <Pagination
+            currentPage={currentPage + 1}
+            onPageChange={handlePageChange}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

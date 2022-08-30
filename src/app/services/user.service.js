@@ -24,6 +24,39 @@ const userServisece = {
       payload
     );
     return data;
+  },
+  addWordUser: async (wordId, type) => {
+    const { data } = await httpServise.post(
+      userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
+      {
+        difficulty: type || "easy",
+        optional: {
+          count: 0
+        }
+      }
+    );
+    return data;
+  },
+  getWordsUser: async () => {
+    const { data } = await httpServise.get(
+      userEndpoint + localStorageService.getUserId() + `/words/`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+        }
+      }
+    );
+    return data;
+  },
+  deleteWordUser: async (wordId) => {
+    await httpServise.delete(
+      userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+        }
+      }
+    );
   }
 };
 

@@ -21,11 +21,17 @@ const AuthProvaider = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
 
   async function signUp({ email, password, name }) {
+    const avatar = `https://avatars.dicebear.com/api/pixel-art/${(
+      Math.random() + 1
+    )
+      .toString(36)
+      .substring(7)}.svg`;
     try {
       await userServisece.create({
         name,
         email,
-        password
+        password,
+        avatar
       });
 
       await signIn({ email, password });
