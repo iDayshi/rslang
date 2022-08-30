@@ -1,3 +1,6 @@
+@import url("./app/styles/timer.css");
+@import url("./app//styles/sprintCard.css");
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

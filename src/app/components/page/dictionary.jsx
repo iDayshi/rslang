@@ -20,7 +20,7 @@ const DictionaryPage = () => {
     getWords(groupIndex, 0);
   };
 
-  console.log(words);
+  console.log("dictionary", words);
   return (
     <div className="d-flex flex-column align-items-center justify-content-center m-5">
       <h1 className="text-center">Учебник</h1>

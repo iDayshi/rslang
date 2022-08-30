@@ -1,0 +1,21 @@
+.h5 {
+  margin-top: 0.5rem;
+}
+
+i {
+  font-size: 2rem;
+}
+
+.bi-check-circle-fill {
+  font-size: 2rem;
+  color: green;
+}
+
+.bi-emoji-frown-fill {
+  font-size: 2rem;
+  color: red;
+}
+
+.bi-grip-vertical {
+  font-size: 2rem;
+}

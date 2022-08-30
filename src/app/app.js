@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import AuthProvaider from "./hooks/useAuth";
 import UserProvaider from "./hooks/useUsers";
 import WordProvaider from "./hooks/useWords";
+import SprintWordProvaider from "./hooks/useSprintWords";
 import LogOut from "./layouts/logOut";
 import AudioCallPage from "./components/page/audioCallPage";
 import SprintPage from "./components/page/sprintPage";
@@ -22,16 +23,18 @@ function App() {
         <NavBar />
         <UserProvaider>
           <WordProvaider>
-            <Switch>
-              <Route path="/logout" component={LogOut} />
-              <Route path="/login/:type?" component={LoginPage} />
-              <Route path="/audiocall" component={AudioCallPage} />
-              <Route path="/sprint" component={SprintPage} />
-              <Route path="/statistic" component={StatisticPage} />
-              <Route path="/dictionary" component={DictionaryPage} />
-              <Route path="/" exact component={MainPage} />
-              <Redirect to="/" />
-            </Switch>
+            <SprintWordProvaider>
+              <Switch>
+                <Route path="/logout" component={LogOut} />
+                <Route path="/login/:type?" component={LoginPage} />
+                <Route path="/audiocall" component={AudioCallPage} />
+                <Route path="/sprint" component={SprintPage} />
+                <Route path="/statistic" component={StatisticPage} />
+                <Route path="/dictionary" component={DictionaryPage} />
+                <Route path="/" exact component={MainPage} />
+                <Redirect to="/" />
+              </Switch>
+            </SprintWordProvaider>
           </WordProvaider>
         </UserProvaider>
       </AuthProvaider>
