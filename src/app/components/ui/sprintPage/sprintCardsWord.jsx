@@ -44,19 +44,19 @@ const SprintCardWord = ({ selectWords }) => {
                 </div>
 
                 <div className="words-translation row">
-                  <div className="card-title-top col-5 text-end my-auto">
-                    <h5>{selectWords[cardIndex].word}</h5>
+                  <div className="card-title col-5 text-end my-auto">
+                    <h3>{selectWords[cardIndex].word}</h3>
                   </div>
 
                   <i className="bi bi-arrow-up-circle-fill text-center col-2"></i>
 
-                  <div className="card-title-top col-5 text-start my-auto">
-                    <h5>{selectWords[cardIndex].wordTranslate}</h5>
+                  <div className="card-title col-5 text-start my-auto">
+                    <h3>{selectWords[cardIndex].wordTranslate}</h3>
                   </div>
                 </div>
 
                 <hr />
-                <div className="bitton-group row">
+                <div className="button-group row">
                   <button
                     type="button"
                     className="btn btn-danger btn-md col-5"

@@ -53,6 +53,7 @@ const SprintWordProvaider = ({ children }) => {
     if (!isLoading) {
       setGroup(groupSelect);
     }
+    setAllGroupWords([]);
     let pageIndex = 0;
     while (pageIndex < 30) {
       try {
@@ -60,10 +61,15 @@ const SprintWordProvaider = ({ children }) => {
           groupSelect || group,
           pageIndex
         );
-        setAllGroupWords((allGroupWords) => [...allGroupWords, content]);
-        if (pageIndex === 29) setLoading(false);
+        const shuffledArr = (array) => array.sort(() => 0.5 - Math.random());
+        setAllGroupWords((allGroupWords) => [
+          ...allGroupWords,
+          shuffledArr(content)
+        ]);
+        if (pageIndex === 29) {
+          setLoading(false);
+        }
         pageIndex += 1;
-        console.log("hook", pageIndex, allGroupWords, content);
       } catch {
         errorCatcher(error);
       }

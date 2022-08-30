@@ -19,3 +19,11 @@ i {
 .bi-grip-vertical {
   font-size: 2rem;
 }
+
+.button-reset {
+  margin: 1rem;
+}
+
+.card {
+  padding: 1rem;
+}
