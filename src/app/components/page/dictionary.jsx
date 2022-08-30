@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useWord } from "../../hooks/useWords";
 import GroupWords from "../groupWords";
 import Pagination from "../pagination";
-import CardWord from "../ui/cardsWord";
+import CardWordList from "../ui/wordCardsList";
 
 const DictionaryPage = () => {
-  const { words, getWords, wordsUser, getAllWordsUser } = useWord();
+  const { words, getWords, wordsUser, getAllWordsUser, isLoading } = useWord();
   const [currentGroup, setCurrentGroup] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -27,13 +27,25 @@ const DictionaryPage = () => {
       <div className="row gutters-sm w-100">
         <div className="container ">
           <div className="card-deck row">
-            <CardWord selectWords={currentGroup !== 6 ? words : wordsUser} />
+            {!isLoading ? (
+              <CardWordList
+                selectWords={currentGroup !== 6 ? words : wordsUser}
+              />
+            ) : (
+              <div className="spinner-border text-info" role="status">
+                <span className="sr-only">Загрузка...</span>
+              </div>
+            )}
           </div>
         </div>
-        <Pagination
-          currentPage={currentPage + 1}
-          onPageChange={handlePageChange}
-        />
+        {currentGroup !== 6 ? (
+          <Pagination
+            currentPage={currentPage + 1}
+            onPageChange={handlePageChange}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

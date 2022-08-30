@@ -35,6 +35,7 @@ const WordProvaider = ({ children }) => {
   }
 
   async function getWords(groupSelect, pageSelect) {
+    setLoading(true);
     if (!isLoading) {
       setGroup(groupSelect);
       setPage(pageSelect);
@@ -61,15 +62,35 @@ const WordProvaider = ({ children }) => {
     }
   }
 
+  async function removeWordUser(wordId) {
+    try {
+      userServisece.deleteWordUser(wordId);
+      setWordsUser((prevState) =>
+        prevState.filter((w) => w.wordId._id !== wordId)
+      );
+      setLoading(false);
+    } catch {
+      errorCatcher(error);
+    }
+  }
+
   function errorCatcher(error) {
     const { message } = error.response.data;
     setError(message);
   }
   return (
     <WordContext.Provider
-      value={{ words, wordsUser, getWordsById, getWords, getAllWordsUser }}
+      value={{
+        isLoading,
+        words,
+        wordsUser,
+        getWordsById,
+        getWords,
+        getAllWordsUser,
+        removeWordUser
+      }}
     >
-      {!isLoading ? children : "Загрузка слов....и супер красивый спинер"}
+      {children}
     </WordContext.Provider>
   );
 };

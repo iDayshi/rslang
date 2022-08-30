@@ -25,13 +25,13 @@ const userServisece = {
     );
     return data;
   },
-  addWordUser: async (wordId) => {
+  addWordUser: async (wordId, type) => {
     const { data } = await httpServise.post(
       userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
       {
-        difficulty: "string",
+        difficulty: type || "easy",
         optional: {
-          count: 5
+          count: 0
         }
       }
     );
@@ -47,6 +47,16 @@ const userServisece = {
       }
     );
     return data;
+  },
+  deleteWordUser: async (wordId) => {
+    await httpServise.delete(
+      userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+        }
+      }
+    );
   }
 };
 
