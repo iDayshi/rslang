@@ -31,7 +31,7 @@ const SprintCardWord = ({ selectWords }) => {
                     <h5>word</h5>
                   </div>
 
-                  <i className="bi bi-arrow-down-circle-fill col-2 my-auto"></i>
+                  <i className="bi bi-arrow-down-circle-fill col-2 text-center my-auto"></i>
 
                   <div className="card-title-top col-5 text-start my-auto">
                     <h5>translation</h5>
@@ -48,7 +48,7 @@ const SprintCardWord = ({ selectWords }) => {
                     <h5>{selectWords[cardIndex].word}</h5>
                   </div>
 
-                  <i className="bi bi-arrow-up-circle-fill col-2"></i>
+                  <i className="bi bi-arrow-up-circle-fill text-center col-2"></i>
 
                   <div className="card-title-top col-5 text-start my-auto">
                     <h5>{selectWords[cardIndex].wordTranslate}</h5>
@@ -64,7 +64,7 @@ const SprintCardWord = ({ selectWords }) => {
                   >
                     Wrong
                   </button>
-                  <i className="bi bi-grip-vertical col-2"></i>
+                  <i className="bi bi-grip-vertical col-2 text-center"></i>
                   <button
                     type="button"
                     className="btn btn-success btn-md col-5"
