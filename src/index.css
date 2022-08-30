@@ -11,3 +11,193 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* _________ AudioCall Page _________ */
+
+@font-face {
+  font-family: SuperLiam;
+  src: url('../assets/SuperLiamSansExtremeRegular.otf');
+}
+
+@font-face {
+  font-family: Montserrat-Regular;
+  src: url('../assets/Montserrat-Regular.ttf');
+}
+
+.audiocall_page {
+  border: 5px solid #c5c5c525;
+  background-image: url('../assets/audio_bcg.png');
+  background-size: contain;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top_line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffffc4;
+  padding: 5px 15px;
+}
+
+.white_bcg {
+  border: 3px solid #c5c5c525;
+  background-color: #ffffffc4;
+  padding: 40px;
+  margin: 20px;
+}
+
+.audio_call_name {
+  font-family: SuperLiam;
+  margin: 0;
+}
+
+.audiocall_header {
+  font-family: Montserrat-Regular;
+  margin-bottom: 40px;
+}
+
+.audiocall_header_small {
+  font-family: Montserrat-Regular;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.audiocall_correct_header {
+  font-family: Montserrat-Regular;
+  font-size: 30px;
+  color: #0a7424;
+  text-align: center;
+  margin: 10px;
+}
+
+.audiocall_wrong_header {
+  font-family: Montserrat-Regular;
+  font-size: 30px;
+  color: #a8120d;
+  text-align: center;
+  margin: 10px;
+}
+
+.audiocall_word_img {
+  border-radius: 0 45px;
+  height: 200px;
+  width: 300px;
+}
+
+.audiocall_wordcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.audiocoll_results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+  /* _ _ _ buttons _ _ _ */
+
+.audiocall_button {
+  border-radius: 0 30px;
+  border: none;
+  color: #ffffff;
+  background-color: #108a24;
+
+  height: 50px;
+  padding: 10px 30px;
+  margin: 10px;
+
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.audiocall_button:hover {
+  background-color: #0e741f;
+}
+
+.big_sound_button {
+  border-radius: 50%;
+  border: 6px solid #1055416b;
+  color: #0b4233;
+  background-color: #ffffff;
+
+  height: 180px;
+  width: 180px;
+  margin: 20px;
+
+  font-size: 48px;
+  text-decoration: none;
+}
+
+.big_sound_button:hover {
+  background-color: #e2f6d48c;
+  border: 6px solid #10552fd2;
+  padding: 35px;
+}
+
+.small_sound_button {
+  border-radius: 50%;
+  border: 3px solid #1055416b;
+  color: #0b4233;
+  background-color: #ffffff;
+
+  height: 60px;
+  width: 60px;
+  margin: 20px;
+
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.small_sound_button:hover {
+  background-color: #e2f6d48c;
+  border: 3px solid #10552fd2;
+  padding: 4px;
+}
+
+.audiocall_word_button {
+  border: none;
+  color: #222222;
+  background-color: #eeeeeec5;;
+
+  height: 50px;
+  margin: 20px;
+  padding: 10px 30px;
+
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.audiocall_word_button:hover {
+  background-color: #9dd6978c;
+  padding-top: 13px;
+}
+
+@media (min-width: 700px) and (max-width: 1000px) {
+  .audiocall_word_button {
+    font-size: 12px;
+    margin: 12px;
+    padding: 5px 15px;
+  }
+  
+}
+
+@media (max-width: 700px) {
+  .audiocall_word_button {
+    font-size: 14px;
+    margin: 10px;
+    padding: 5px 15px;
+  }
+  .audio_game_words {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
