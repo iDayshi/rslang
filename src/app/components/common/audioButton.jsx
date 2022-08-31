@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const AudioButton = ({ urls }) => {
-  const [audios] = useState(
-    urls.map((url) => new Audio(`http://localhost:8080/${url}`))
-  );
+  const [audios, setAudio] = useState([]);
   const [playing, setPlaying] = useState(false);
 
-  const toggle = () => setPlaying(!playing);
+  useEffect(() => {
+    setAudio(urls.map((url) => new Audio(`http://localhost:8080/${url}`)));
+  }, []);
 
   useEffect(() => {
     if (playing) {
@@ -23,9 +23,11 @@ const AudioButton = ({ urls }) => {
     }
   }, [playing]);
 
+  const toggle = () => setPlaying(!playing);
+
   return (
     <>
-      <button type="button" className="btn btn-success ms-2" onClick={toggle}>
+      <button type="button" className="btn btn-info ms-2" onClick={toggle}>
         {playing ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"

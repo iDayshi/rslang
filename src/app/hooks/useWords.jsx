@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import wordServisece from "../services/word.service";
 import { toast } from "react-toastify";
 import userServisece from "../services/user.service";
+import { useAuth } from "./useAuth";
 
 const WordContext = React.createContext();
 
@@ -11,16 +12,23 @@ export const useWord = () => {
 };
 
 const WordProvaider = ({ children }) => {
+  const { currentUser } = useAuth();
   const [words, setWords] = useState([]);
   const [wordsUser, setWordsUser] = useState([]);
   const [group, setGroup] = useState(0);
   const [page, setPage] = useState(0);
   const [isLoading, setLoading] = useState(true);
+  const [isLoadingUserWords, setLoadingUserWords] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getWords();
-    getAllWordsUser();
+    if (currentUser) {
+      getAllWordsUser();
+      getWords();
+    } else {
+      getWords();
+      setLoadingUserWords(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -35,7 +43,6 @@ const WordProvaider = ({ children }) => {
   }
 
   async function getWords(groupSelect, pageSelect) {
-    setLoading(true);
     if (!isLoading) {
       setGroup(groupSelect);
       setPage(pageSelect);
@@ -56,6 +63,7 @@ const WordProvaider = ({ children }) => {
     try {
       const { content } = await userServisece.getWordsUser();
       setWordsUser(content);
+      setLoadingUserWords(false);
       setLoading(false);
     } catch {
       errorCatcher(error);
@@ -84,6 +92,7 @@ const WordProvaider = ({ children }) => {
         isLoading,
         words,
         wordsUser,
+        isLoadingUserWords,
         getWordsById,
         getWords,
         getAllWordsUser,

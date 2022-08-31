@@ -7,7 +7,6 @@ import MainPage from "./layouts/main";
 import LoginPage from "./layouts/login";
 import { ToastContainer } from "react-toastify";
 import AuthProvaider from "./hooks/useAuth";
-import UserProvaider from "./hooks/useUsers";
 import WordProvaider from "./hooks/useWords";
 import SprintWordProvaider from "./hooks/useSprintWords";
 import LogOut from "./layouts/logOut";
@@ -21,22 +20,22 @@ function App() {
     <>
       <AuthProvaider>
         <NavBar />
-        <UserProvaider>
-          <WordProvaider>
-            <SprintWordProvaider>
-              <Switch>
-                <Route path="/logout" component={LogOut} />
-                <Route path="/login/:type?" component={LoginPage} />
-                <Route path="/audiocall" component={AudioCallPage} />
-                <Route path="/sprint" component={SprintPage} />
-                <Route path="/statistic" component={StatisticPage} />
-                <Route path="/dictionary" component={DictionaryPage} />
-                <Route path="/" exact component={MainPage} />
-                <Redirect to="/" />
-              </Switch>
-            </SprintWordProvaider>
-          </WordProvaider>
-        </UserProvaider>
+        {/* <UserProvaider> */}
+        <WordProvaider>
+          <SprintWordProvaider>
+            <Switch>
+              <Route path="/logout" component={LogOut} />
+              <Route path="/login/:type?" component={LoginPage} />
+              <Route path="/audiocall" component={AudioCallPage} />
+              <Route path="/sprint" component={SprintPage} />
+              <Route path="/statistic" component={StatisticPage} />
+              <Route path="/dictionary" component={DictionaryPage} />
+              <Route path="/" exact component={MainPage} />
+              <Redirect to="/" />
+            </Switch>
+          </SprintWordProvaider>
+        </WordProvaider>
+        {/* </UserProvaider> */}
       </AuthProvaider>
       <ToastContainer />
     </>
