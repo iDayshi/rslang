@@ -1,6 +1,6 @@
-// import React, { useState } from "react";
 import React from "react";
-// import wordServisece from "../services/word.service";
+import Footer from "../components/ui/footer";
+import React from "react";
 
 const MainPage = () => {
   return (

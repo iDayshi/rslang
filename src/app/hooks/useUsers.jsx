@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import userServisece from "../services/user.service";
 import { toast } from "react-toastify";
-import { useAuth } from "./useAuth";
+// import { useAuth } from "./useAuth";
 
 const UserContext = React.createContext();
 
@@ -12,7 +12,7 @@ export const useUser = () => {
 
 const UserProvaider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,10 +30,6 @@ const UserProvaider = ({ children }) => {
     }
   }, [error]);
 
-  function getUserById(userId) {
-    return users.find((u) => u._id === userId);
-  }
-
   async function getUsers() {
     try {
       const { content } = await userServisece.get();
@@ -44,21 +40,21 @@ const UserProvaider = ({ children }) => {
     }
   }
 
-  useEffect(() => {
-    if (!isLoading) {
-      const newUser = [...users];
-      const indexUser = newUser.findIndex((u) => u._id === currentUser._id);
-      newUser[indexUser] = currentUser;
-      setUsers(newUser);
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     const newUser = [...users];
+  //     const indexUser = newUser.findIndex((u) => u._id === currentUser._id);
+  //     newUser[indexUser] = currentUser;
+  //     setUsers(newUser);
+  //   }
+  // }, [currentUser]);
 
   function errorCatcher(error) {
     const { message } = error.response.data;
     setError(message);
   }
   return (
-    <UserContext.Provider value={{ users, getUserById }}>
+    <UserContext.Provider value={{ users }}>
       {!isLoading
         ? children
         : "Загрузка пользователей....и супер красивый спинер"}
