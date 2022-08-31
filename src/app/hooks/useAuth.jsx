@@ -31,7 +31,7 @@ const AuthProvaider = ({ children }) => {
       await signIn({ email, password });
     } catch (error) {
       errorCatcher(error);
-      const { code, message } = error.response.data.error;
+      const { code, message } = error;
       if (code === 400) {
         if (message === "EMAIL_EXISTS") {
           const errorObject = {
@@ -44,7 +44,6 @@ const AuthProvaider = ({ children }) => {
   }
 
   async function signIn({ email, password }) {
-    console.log({ email, password });
     try {
       const data = await authService.login({ email, password });
       setTokens(data);

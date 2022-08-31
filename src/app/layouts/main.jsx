@@ -1,52 +1,47 @@
-import React, { useState } from "react";
-import wordServisece from "../services/word.service";
+// import React, { useState } from "react";
+import React from "react";
+// import wordServisece from "../services/word.service";
 
 const MainPage = () => {
-  const [words, setWords] = useState([]);
-  const handleClick = async () => {
-    const { content } = await wordServisece.get();
-    setWords(content);
-  };
-
   return (
     <>
-      <div className="container mt-5">
-        <h1 className="mb-5">Добро пожаловать!</h1>
-        <button
-          onClick={handleClick}
-          type="button"
-          className="btn btn-info mb-5"
-        >
-          Получить слова
-        </button>
-        {words.length ? (
-          words.map((word) => {
-            return (
-              <div key={word.id} className="card mb-3">
-                <div className="card-body pt-5">
-                  <div className="d-flex flex-column align-items-center text-center position-relative">
-                    <img
-                      src="https://www.imgonline.com.ua/examples/bee-on-daisy.jpg"
-                      className="img-thumbnail"
-                      width="200"
-                    />
-                    <div className="mt-3">
-                      <h4>{word.wordTranslate}</h4>
-                      <p className="text-secondary mb-1">{word.textExample}</p>
-                      <div className="text-muted">
-                        <span className="ms-2">
-                          {word.textExampleTranslate}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+      <div className="container">
+        <main>
+          <div className="main_wrapper">
+            <div className="main_info">
+              <h1 className="logo">RSLang</h1>
+              <div className="promo"><b>RS Lang</b> – приложение для изучения иностранных слов, включающее электронный учебник с базой слов для изучения, мини-игры для их повторения, страницу статистики для отслеживания индивидуального прогресса</div>
+            </div>
+            <div className="navigation">
+              <button className="main_button">Учебник</button>
+              <button className="main_button">Мини-игра <b>Спринт</b></button>
+              <button className="main_button">Мини-игра <b>Аудиовызов</b></button>
+              <button className="main_button">Статистика</button>
+            </div>
+          </div>
+        </main>
+        <footer>
+          <div className="container">
+            <div className="footer_info_wrapper">
+              <a href="https://rs.school/js/" className="RSS_logo">RSSchool</a>
+              <div className="team">
+                <div className="git_person">
+                  <a href="https://github.com/iDayshi" className="github_logo"></a>
+                  <a href="https://github.com/iDayshi" className="github_name"> Maksim </a>
+                </div>
+                <div className="git_person">
+                  <a href="https://github.com/Macbaren" className="github_logo"></a>
+                  <a href="https://github.com/Macbaren" className="github_name"> Andrey </a>
+                </div>
+                <div className="git_person">
+                  <a href="https://github.com/4Quark" className="github_logo"></a>
+                  <a href="https://github.com/4Quark" className="github_name"> Maria </a>
                 </div>
               </div>
-            );
-          })
-        ) : (
-          <h2>Слова не загружены</h2>
-        )}
+              <a>© RSSchool, 2022</a>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   );

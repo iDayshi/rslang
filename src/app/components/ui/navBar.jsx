@@ -20,24 +20,32 @@ const NavBar = () => {
                 Main
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link text-sm-center nav-link active m-1"
+                to="/dictionary"
+              >
+                Учебник
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link text-sm-center nav-link active m-1"
+                to="/audiocall"
+              >
+                Аудиовызов
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link text-sm-center nav-link active m-1"
+                to="/sprint"
+              >
+                Спринт
+              </Link>
+            </li>
             {currentUser && (
               <>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link text-sm-center nav-link active m-1"
-                    to="/audiocall"
-                  >
-                    Аудиовызов
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link text-sm-center nav-link active m-1"
-                    to="/sprint"
-                  >
-                    Спринт
-                  </Link>
-                </li>
                 <li className="nav-item">
                   <Link
                     className="nav-link text-sm-center nav-link active m-1"
