@@ -8,8 +8,8 @@ import userServisece from "../../services/user.service";
 const CardWord = ({ word }) => {
   const { currentUser } = useAuth();
   const { wordsUser, removeWordUser } = useWord();
-  const [difficultWord, setDifficultWord] = useState();
-  // const [learnedWord, setLearnedWord] = useState();
+  const [difficultWord, setDifficultWord] = useState(false);
+  const [learnedWord, setLearnedWord] = useState(false);
   // const [studyStatus, setStudyStatus] = useState();
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const CardWord = ({ word }) => {
       (wordDif) => wordDif.wordId.word === word.word
     );
     setDifficultWord(isDifficultWord);
+    setLearnedWord(false);
   }, []);
 
   const handleWordDifficultyChange = (wordId) => {
@@ -127,17 +128,17 @@ const CardWord = ({ word }) => {
                   word.audioMeaning || word.wordId.audioMeaning
                 ]}
               />
-              <button
-                type="button"
-                className={`btn btn-success ms-2`}
-                onClick={
-                  word.wordId
-                    ? () => handleWordDelete(word.wordId._id)
-                    : () => handleWordDifficultyChange(word.id)
-                }
-              >
-                {word.wordId ? "Изучено" : "Добавить в изученые слова"}
-              </button>
+              {currentUser ? (
+                learnedWord ? (
+                  <button className="btn btn-success">Слово изучено</button>
+                ) : (
+                  <button type="button" className={`btn btn-success ms-2`}>
+                    {word.wordId ? "Изучено" : "Добавить в изученые слова"}
+                  </button>
+                )
+              ) : (
+                ""
+              )}
             </p>
           </div>
         </div>

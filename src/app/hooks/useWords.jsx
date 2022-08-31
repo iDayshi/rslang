@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import wordServisece from "../services/word.service";
 import { toast } from "react-toastify";
 import userServisece from "../services/user.service";
+import { useAuth } from "./useAuth";
 
 const WordContext = React.createContext();
 
@@ -11,6 +12,7 @@ export const useWord = () => {
 };
 
 const WordProvaider = ({ children }) => {
+  const { currentUser } = useAuth();
   const [words, setWords] = useState([]);
   const [wordsUser, setWordsUser] = useState([]);
   const [group, setGroup] = useState(0);
@@ -20,8 +22,13 @@ const WordProvaider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getAllWordsUser();
-    getWords();
+    if (currentUser) {
+      getAllWordsUser();
+      getWords();
+    } else {
+      getWords();
+      setLoadingUserWords(false);
+    }
   }, []);
 
   useEffect(() => {
