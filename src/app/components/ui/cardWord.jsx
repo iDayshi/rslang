@@ -29,108 +29,120 @@ const CardWord = ({ word }) => {
   };
 
   return (
-    <>
-      <div
-        className={`card ${
-          difficultWord ? "border border-3 border-danger" : ""
-        }`}
-      >
-        <div className="view overlay">
-          <img
-            className="card-img-top mh-20"
-            style={{
-              maxHeight: "283.828px "
-            }}
-            src={`http://localhost:8080/${word.image || word.wordId.image}`}
-            alt={word.word || word.wordId.word}
-          />
-          <a href="#!">
-            <div className="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-        <div className="card-body text-center">
-          <h5 className="card-title ">
-            {word.word || word.wordId.word}{" "}
-            <i
-              style={{
-                color: "#76CDD8"
+    <section>
+      <div className="container ">
+        <div
+          className="row align-items-center"
+          style={{
+            boxShadow: `0 0.5rem 1rem rgba${
+              difficultWord ? "(255, 0, 0, 0.5)" : "(0, 0, 0, 0.2)"
+            }`
+          }}
+        >
+          <div className="col-10 col-sm-6 col-md-5 col-lg-4 m-auto pb-5 pb-md-0 ">
+            <img
+              alt="image"
+              className="img-fluid rounded-0"
+              src={`http://localhost:8080/${word.image || word.wordId.image}`}
+            />
+          </div>
+          <div className="col-12 ml-md-auto col-md-7 col-lg-6 pb-5 pb-md-0 p-2">
+            <h2 className="text-muted">
+              <img
+                alt="image"
+                height="32"
+                width="32"
+                src="https://www.svgrepo.com/show/20589/book.svg"
+              />{" "}
+              {word.word || word.wordId.word}{" "}
+              <i
+                style={{
+                  color: "#76CDD8"
+                }}
+                className="bi bi-chevron-compact-left"
+              ></i>
+              {word.transcription || word.wordId.transcription}
+              <i
+                style={{
+                  color: "#76CDD8"
+                }}
+                className="bi bi-chevron-compact-right"
+              ></i>{" "}
+              {word.wordTranslate || word.wordId.wordTranslate}
+            </h2>
+            <hr />
+            <h6
+              dangerouslySetInnerHTML={{
+                __html: word.textExample || word.wordId.textExample
               }}
-              className="bi bi-chevron-compact-left"
-            ></i>
-            {word.transcription || word.wordId.transcription}
-            <i
-              style={{
-                color: "#76CDD8"
+              className="lead"
+            ></h6>
+            <h6
+              dangerouslySetInnerHTML={{
+                __html:
+                  word.textExampleTranslate || word.wordId.textExampleTranslate
               }}
-              className="bi bi-chevron-compact-right"
-            ></i>{" "}
-            {word.wordTranslate || word.wordId.wordTranslate}
-          </h5>
-          <hr />
-          <h6
-            className="card-text"
-            dangerouslySetInnerHTML={{
-              __html: word.textExample || word.wordId.textExample
-            }}
-          ></h6>
-          <br />
-          <h6
-            className="card-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                word.textExampleTranslate || word.wordId.textExampleTranslate
-            }}
-          ></h6>
-          <hr />
-          <h6
-            className="card-text"
-            dangerouslySetInnerHTML={{
-              __html: word.textMeaning || word.wordId.textMeaning
-            }}
-          ></h6>
-          <br />
-          <h6
-            className="card-text"
-            dangerouslySetInnerHTML={{
-              __html:
-                word.textMeaningTranslate || word.wordId.textMeaningTranslate
-            }}
-          ></h6>
-          <hr />
-          {currentUser ? (
-            difficultWord ? (
-              <p className="text-danger border border-1 border-danger">
-                Сложное слово
-              </p>
-            ) : (
+              className="lead"
+            ></h6>
+            <hr />
+            <h6
+              className="card-text"
+              dangerouslySetInnerHTML={{
+                __html: word.textMeaning || word.wordId.textMeaning
+              }}
+            ></h6>
+            <h6
+              className="card-text"
+              dangerouslySetInnerHTML={{
+                __html:
+                  word.textMeaningTranslate || word.wordId.textMeaningTranslate
+              }}
+            ></h6>
+            <p className="mt-4">
+              {currentUser ? (
+                difficultWord ? (
+                  <button className="btn btn-danger">Сложное слово</button>
+                ) : (
+                  <button
+                    type="button"
+                    className={`btn btn-danger`}
+                    onClick={
+                      word.wordId
+                        ? () => handleWordDelete(word.wordId._id)
+                        : () => handleWordDifficultyChange(word.id)
+                    }
+                  >
+                    {word.wordId
+                      ? "Удалить из сложных слов"
+                      : "Добавить в сложные слова"}
+                  </button>
+                )
+              ) : (
+                ""
+              )}
+              <AudioButton
+                urls={[
+                  word.audio || word.wordId.audio,
+                  word.audioExample || word.wordId.audioExample,
+                  word.audioMeaning || word.wordId.audioMeaning
+                ]}
+              />
               <button
                 type="button"
-                className={`btn ${word.wordId ? "btn-danger" : "btn-danger"} `}
+                className={`btn btn-success ms-2`}
                 onClick={
                   word.wordId
                     ? () => handleWordDelete(word.wordId._id)
                     : () => handleWordDifficultyChange(word.id)
                 }
               >
-                {word.wordId
-                  ? "Удалить из сложных слов"
-                  : "Добавить в сложные слова"}
+                {word.wordId ? "Изучено" : "Добавить в изученые слова"}
               </button>
-            )
-          ) : (
-            ""
-          )}
-          <AudioButton
-            urls={[
-              word.audio || word.wordId.audio,
-              word.audioExample || word.wordId.audioExample,
-              word.audioMeaning || word.wordId.audioMeaning
-            ]}
-          />
+            </p>
+          </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

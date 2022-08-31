@@ -16,11 +16,12 @@ const WordProvaider = ({ children }) => {
   const [group, setGroup] = useState(0);
   const [page, setPage] = useState(0);
   const [isLoading, setLoading] = useState(true);
+  const [isLoadingUserWords, setLoadingUserWords] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getWords();
     getAllWordsUser();
+    getWords();
   }, []);
 
   useEffect(() => {
@@ -35,7 +36,6 @@ const WordProvaider = ({ children }) => {
   }
 
   async function getWords(groupSelect, pageSelect) {
-    setLoading(true);
     if (!isLoading) {
       setGroup(groupSelect);
       setPage(pageSelect);
@@ -56,6 +56,7 @@ const WordProvaider = ({ children }) => {
     try {
       const { content } = await userServisece.getWordsUser();
       setWordsUser(content);
+      setLoadingUserWords(false);
       setLoading(false);
     } catch {
       errorCatcher(error);
@@ -84,6 +85,7 @@ const WordProvaider = ({ children }) => {
         isLoading,
         words,
         wordsUser,
+        isLoadingUserWords,
         getWordsById,
         getWords,
         getAllWordsUser,

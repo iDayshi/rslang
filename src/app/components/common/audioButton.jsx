@@ -25,7 +25,7 @@ const AudioButton = ({ urls }) => {
 
   return (
     <>
-      <button type="button" className="btn btn-success ms-2" onClick={toggle}>
+      <button type="button" className="btn btn-info ms-2" onClick={toggle}>
         {playing ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
