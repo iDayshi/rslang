@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAudioCall } from "../../hooks/useAudioCall";
 import { useAuth } from "../../hooks/useAuth";
 import NavProfole from "./navProfile";
 
 const NavBar = () => {
   const { currentUser } = useAuth();
+  const { setWordsGameDictionary } = useAudioCall();
+
+  const handleClearWordsGame = () => {
+    setWordsGameDictionary([]);
+  };
 
   return (
     <>
@@ -44,6 +50,7 @@ const NavBar = () => {
                 <Link
                   className="nav-link text-sm-center nav-link active m-1"
                   to="/audiocall"
+                  onClick={handleClearWordsGame}
                 >
                   Аудиовызов
                 </Link>

@@ -17,6 +17,7 @@ const WordProvaider = ({ children }) => {
   const [wordsUser, setWordsUser] = useState([]);
   const [group, setGroup] = useState(0);
   const [page, setPage] = useState(0);
+  const [isPageExplored, setPageExplored] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [isLoadingUserWords, setLoadingUserWords] = useState(true);
   const [error, setError] = useState(null);
@@ -32,17 +33,18 @@ const WordProvaider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    checkPageExplored(words, wordsUser);
+  }, [words, wordsUser]);
+
+  useEffect(() => {
     if (error !== null) {
       toast(error);
       setError(null);
     }
   }, [error]);
 
-  function getWordsById(wordsId) {
-    return words.find((u) => u._id === wordsId);
-  }
-
   async function getWords(groupSelect, pageSelect) {
+    setLoading(true);
     if (!isLoading) {
       setGroup(groupSelect);
       setPage(pageSelect);
@@ -86,6 +88,17 @@ const WordProvaider = ({ children }) => {
     const { message } = error.response.data;
     setError(message);
   }
+  async function checkPageExplored(wordsPage, wordsUser) {
+    const count = wordsPage.reduce((acc, w) => {
+      wordsUser.forEach((wu) => {
+        if (w.id === wu.wordId._id) {
+          return (acc += 1);
+        }
+      });
+      return acc;
+    }, 0);
+    return count === 20 ? setPageExplored(true) : setPageExplored(false);
+  }
   return (
     <WordContext.Provider
       value={{
@@ -93,7 +106,7 @@ const WordProvaider = ({ children }) => {
         words,
         wordsUser,
         isLoadingUserWords,
-        getWordsById,
+        isPageExplored,
         getWords,
         getAllWordsUser,
         removeWordUser
