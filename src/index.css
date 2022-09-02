@@ -1,3 +1,6 @@
+@import url("./app/styles/timer.css");
+@import url("./app//styles/sprintCard.css");
+
 @font-face {
   font-family: SuperLiam;
   src: url("../assets/SuperLiamSansExtremeRegular.otf");
