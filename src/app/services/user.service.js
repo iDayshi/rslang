@@ -29,7 +29,19 @@ const userServisece = {
     const { data } = await httpServise.post(
       userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
       {
-        difficulty: type || "easy",
+        difficulty: type,
+        optional: {
+          count: 0
+        }
+      }
+    );
+    return data;
+  },
+  updateWordUser: async (wordId, type) => {
+    const { data } = await httpServise.put(
+      userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
+      {
+        difficulty: type,
         optional: {
           count: 0
         }
