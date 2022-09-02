@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/ui/footer";
+import { useAudioCall } from "../hooks/useAudioCall";
 
 const MainPage = () => {
+  const { setWordsGameDictionary } = useAudioCall();
+
+  const handleClearWordsGame = () => {
+    setWordsGameDictionary([]);
+  };
+
   return (
     <>
       <div className="container">
@@ -33,6 +40,7 @@ const MainPage = () => {
               <Link
                 className="text-reset text-decoration-none"
                 to="/audiocall"
+                onClick={handleClearWordsGame}
               >
                 <button className="main_button">
                   Мини-игра <b>Аудиовызов</b>

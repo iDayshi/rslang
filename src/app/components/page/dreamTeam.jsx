@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../components/ui/footer";
 
 const AboutTeam = () => {
   return (
@@ -21,7 +22,7 @@ const AboutTeam = () => {
                   </a>
                 </div>
             <p>Teamlead. Учебник и словарь. Аутентификация. Статистика. </p>
-            <p><i className="bi bi-info-circle"></i><i>Нравится розовый цвет</i></p>
+            <p><i className="bi bi-info-circle"></i><i className="bi">Нравится розовый цвет</i></p>
             <div className="unicorn1"></div>
         </article>
 
@@ -40,7 +41,7 @@ const AboutTeam = () => {
                   </a>
                 </div>
             <p>Игра Спринт. Хорошее настроение.</p>
-            <p><i className="bi bi-info-circle"></i><i>Нравится ездить в командировки</i></p>
+            <p><i className="bi bi-info-circle"></i><i className="bi">Нравится ездить в командировки</i></p>
             <div className="unicorn2"></div>
         </article>
 
@@ -59,44 +60,12 @@ const AboutTeam = () => {
                   </a>
             </div>
             <p>Игра Аудиовызов. Главная страница и инфо. Дизайн и красота. </p>
-            <p><i className="bi bi-info-circle"></i><i>Нравится логотип React</i></p>
+            <p><i className="bi bi-info-circle"></i><i className="bi">Нравится логотип React</i></p>
             <div className="unicorn3"></div>
         </article>
       </div>
 
-      <footer>
-          <div className="container">
-            <div className="footer_info_wrapper">
-              <a href="https://rs.school/js/" className="RSS_logo">
-                RSSchool
-              </a>
-              <div className="team">
-                <div className="git_person">
-                  <a href="https://github.com/iDayshi" className="github_name">
-                    <i className="bi bi-github"></i>
-                    {" "}
-                    Maksim{" "}
-                  </a>
-                </div>
-                <div className="git_person">
-                  <a href="https://github.com/Macbaren" className="github_name">
-                    <i className="bi bi-github"></i>
-                    {" "}
-                    Andrey{" "}
-                  </a>
-                </div>
-                <div className="git_person">
-                  <a href="https://github.com/4Quark" className="github_name">
-                    <i className="bi bi-github"></i>
-                    {" "}
-                    Maria{" "}
-                  </a>
-                </div>
-              </div>
-              <a>© RSSchool, 2022</a>
-            </div>
-          </div>
-        </footer>
+      <Footer />
     </div>
   );
 };
