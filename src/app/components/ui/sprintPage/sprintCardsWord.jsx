@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import SprintCountdown from "./sprintCountdown";
 import SprintTimer from "./sprintTimer";
-import startSound from "./sounds/start.mp3";
+
+// import startSound from "./sounds/start.mp3";
+import rightSound from "./sounds/right.mp3";
+import wrongSound from "./sounds/wrong.mp3";
+import finishSound from "./sounds/finish.mp3";
 
 const SprintCardWord = ({ selectWords }) => {
   const [countdown, setCountdown] = useState(false);
@@ -19,6 +23,7 @@ const SprintCardWord = ({ selectWords }) => {
 
   const resultPhrases = ["Keep going!", "Not Bad!!", "Awesome!!!"]; // set final result phrase
   const getResultPhrase = () => {
+    playFinish();
     if (score < 10) {
       return resultPhrases[0];
     } else if (score < 50) {
@@ -42,11 +47,21 @@ const SprintCardWord = ({ selectWords }) => {
     setIsFakeIndex(!!isfake);
   };
 
-  // const audioStart = new Audio("./sounds/start.mp3");
-
-  // const start = () => {
-  //   startSound.play();
+  // const playStart = () => {
+  //   new Audio(startSound).play();
   // };
+
+  const playRight = () => {
+    new Audio(rightSound).play();
+  };
+
+  const playWrong = () => {
+    new Audio(wrongSound).play();
+  };
+
+  const playFinish = () => {
+    new Audio(finishSound).play();
+  };
 
   const commonButtonAction = () => {
     const fakeTranslationIndex = Math.floor(Math.random() * 599);
@@ -66,9 +81,11 @@ const SprintCardWord = ({ selectWords }) => {
       if (scoreCoeff < 3) {
         setScoreCoeff(scoreCoeff + 1);
       }
+      playRight();
       setScore(score + scoreCoeff);
       setRightIcon("bi bi-check-circle-fill text-center col");
     } else {
+      playWrong();
       setScoreCoeff(1);
       setRightIcon("bi bi-emoji-frown-fill text-center col");
     }
@@ -80,9 +97,11 @@ const SprintCardWord = ({ selectWords }) => {
       if (scoreCoeff < 3) {
         setScoreCoeff(scoreCoeff + 1);
       }
+      playRight();
       setScore(score + scoreCoeff);
       setRightIcon("bi bi-check-circle-fill text-center col");
     } else {
+      playWrong();
       setScoreCoeff(1);
       setRightIcon("bi bi-emoji-frown-fill text-center col");
     }
