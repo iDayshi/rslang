@@ -15,12 +15,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fad0c4;
-  background: linear-gradient(
-    to top,
-    rgba(250, 208, 196, 0.5),
-    rgba(255, 209, 255, 0.5)
-  );
 }
 
 code {
@@ -28,7 +22,42 @@ code {
     monospace;
 }
 
-/* _________ MANE Page _________ */
+.bi {
+  margin: 4px;
+}
+
+.nav-link {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-item {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav_btn {
+  border: none;
+  color: #222222;
+  background-color: #eeeeeec5;
+
+  height: 40px;
+  width: 120px;
+  margin: 0;
+  padding: 5px ;
+
+  font-family: Montserrat-Regular;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav_btn:hover {
+  color: #4a5039;
+  background-color: #b1be864b;
+}
+
+/* _________ MAIN Page _________ */
 
 .main_wrapper {
   background-image: url(../assets/book.jpg);
@@ -47,7 +76,8 @@ code {
 .navigation {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
   padding: 30px;
   width: 40%;
 }
@@ -75,8 +105,8 @@ code {
   color: #313131;
   background-color: #ffffffa8;
   width: 290px;
-  height: 90px;
-  margin: auto;
+  height: 80px;
+  margin: 10px;
   font-family: Montserrat-Regular;
   font-size: 18px;
   text-decoration: none;
@@ -86,6 +116,13 @@ code {
   background-color: #e2f6d48c;
   border: 0.5px solid #10552fd2;
   padding-top: 3px;
+}
+
+.additional_button {
+  width: 135px;
+  height: 50px;
+  font-size: 16px;
+  letter-spacing: -.03em;
 }
 
 /* _ _ _ footer _ _ _ */
@@ -114,16 +151,6 @@ code {
   font-size: 0;
   height: 23px;
   width: 61px;
-  margin: 10px;
-}
-
-.github_logo {
-  background-image: url(../assets/git_logo.png);
-  background-size: 20px;
-  display: block;
-  font-size: 0;
-  height: 20px;
-  width: 20px;
   margin: 10px;
 }
 
@@ -162,7 +189,7 @@ code {
 
 .audio_call_name {
   font-family: SuperLiam;
-  margin: 0;
+  margin: 0 10px 0 0;
 }
 
 .audiocall_header {
@@ -283,12 +310,153 @@ code {
   font-family: Montserrat-Regular;
   font-size: 18px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .audiocall_word_button:hover {
   background-color: #9dd6978c;
   padding-top: 13px;
 }
+
+.info_button {
+  border: none;
+  background: rgba(255, 255, 255, 0);
+}
+
+/* _________ Team Page _________ */
+
+.team_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80vh;
+  background: #fad0c4;
+  background: linear-gradient(
+    to top,
+    rgba(250, 208, 196, 0.5),
+    rgba(255, 209, 255, 0.5)
+  );
+  font-family: Montserrat-Regular;
+}
+
+.teammate {
+  width: 30%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team_pic {
+  border-radius: 50%;
+  width: 260px;
+  height: 260px;
+}
+
+.teammate_Name {
+  font-family: SuperLiam;
+  color:rgb(235, 11, 179);
+  font-size: 40px;
+}
+
+.unicorn1 {
+  width: 100px;
+  height: 100px;
+  background: url("../assets/uni1.gif");
+  background-size: 100px;
+}
+
+.unicorn2 {
+  width: 100px;
+  height: 100px;
+  background: url("../assets/uni2.gif");
+  background-size: 100px;
+}
+
+.unicorn3 {
+  width: 100px;
+  height: 100px;
+  background: url("../assets/uni3.gif");
+  background-size: 120px;
+}
+
+/* _________ About Page _________ */
+
+.about_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80vh;
+  font-family: Montserrat-Regular;
+  border: 5px solid #c5c5c525;
+  background-image: url("../assets/about_bcg.JPG");
+  background-size: contain;
+}
+
+.about-promo {
+  background-color: #eef5ee50;
+  color: rgb(59, 59, 59);
+  width: 90%;
+  padding: 5px;
+  margin: 10px;
+}
+
+.leaves {
+  background-image: url("../assets/leaves.png");
+  width: 200px;
+  height: 200px;
+  background-size: 200px;
+  margin-top: 40px;
+}
+
+.about-info {
+  margin-right: 1.5%;
+  margin-top: 20px;
+}
+
+.groups_wrapper {
+  display:flex;
+  justify-content: space-between;
+}
+
+.info-wrapper {
+  margin: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+.article-wrapper {
+  border: 3px solid #c0c2c141;
+  color: #222222;
+  background-color: #ffffff46;
+
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px 10px 0px 10px;
+
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.about_info_btn {
+  border-radius: 15px;
+  border: 3px solid #53665a17;
+  color: #222222;
+  background-color: #b4b4b446;
+
+  width: 25%;
+  margin: 10px;
+  padding: 5px;
+
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.about_info_btn:hover {
+  background-color: #83968081;
+}
+
+/* _________ MEDIA _________ */
 
 @media (min-width: 700px) and (max-width: 1000px) {
   .audiocall_word_button {
@@ -338,5 +506,13 @@ code {
   .main_button {
     height: 60px;
     margin-bottom: 10px;
+  }
+
+  .nav_btn {
+    width: 60px;
+  }
+
+  .nav_element_text {
+    display: none;
   }
 }
