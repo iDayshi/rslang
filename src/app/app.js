@@ -12,30 +12,31 @@ import SprintWordProvaider from "./hooks/useSprintWords";
 import LogOut from "./layouts/logOut";
 import AudioCallPage from "./components/page/audioCallPage";
 import SprintPage from "./components/page/sprintPage";
-import StatisticPage from "./components/page/statistic";
-import DictionaryPage from "./components/page/dictionary";
+import StatisticPage from "./components/page/statisticPage";
+import DictionaryPage from "./components/page/dictionaryPage";
+import AudioCallProvaider from "./hooks/useAudioCall";
 
 function App() {
   return (
     <>
       <AuthProvaider>
+        <AudioCallProvaider>
         <NavBar />
-        {/* <UserProvaider> */}
-        <WordProvaider>
-          <SprintWordProvaider>
-            <Switch>
-              <Route path="/logout" component={LogOut} />
-              <Route path="/login/:type?" component={LoginPage} />
-              <Route path="/audiocall" component={AudioCallPage} />
-              <Route path="/sprint" component={SprintPage} />
-              <Route path="/statistic" component={StatisticPage} />
-              <Route path="/dictionary" component={DictionaryPage} />
-              <Route path="/" exact component={MainPage} />
-              <Redirect to="/" />
-            </Switch>
-          </SprintWordProvaider>
-        </WordProvaider>
-        {/* </UserProvaider> */}
+          <WordProvaider>
+            <SprintWordProvaider>
+              <Switch>
+                <Route path="/logout" component={LogOut} />
+                <Route path="/login/:type?" component={LoginPage} />
+                <Route path="/audiocall" component={AudioCallPage} />
+                <Route path="/sprint" component={SprintPage} />
+                <Route path="/statistic" component={StatisticPage} />
+                <Route path="/dictionary" component={DictionaryPage} />
+                <Route path="/" exact component={MainPage} />
+                <Redirect to="/" />
+              </Switch>
+            </SprintWordProvaider>
+          </WordProvaider>
+        </AudioCallProvaider>
       </AuthProvaider>
       <ToastContainer />
     </>
