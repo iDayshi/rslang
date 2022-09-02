@@ -1,28 +1,50 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import AudioButton from "../common/audioButton";
-import { useAuth } from "../../hooks/useAuth";
-import { useWord } from "../../hooks/useWords";
-import userServisece from "../../services/user.service";
+import AudioButton from "../../common/audioButton";
+import { useAuth } from "../../../hooks/useAuth";
+import { useWord } from "../../../hooks/useWords";
+import userServisece from "../../../services/user.service";
 
 const CardWord = ({ word }) => {
   const { currentUser } = useAuth();
   const { wordsUser, removeWordUser } = useWord();
   const [difficultWord, setDifficultWord] = useState(false);
   const [learnedWord, setLearnedWord] = useState(false);
-  // const [studyStatus, setStudyStatus] = useState();
+  const [studyStatus, setStudyStatus] = useState(0);
 
   useEffect(() => {
-    const isDifficultWord = !!wordsUser.find(
+    const isWord = wordsUser.find(
       (wordDif) => wordDif.wordId.word === word.word
     );
-    setDifficultWord(isDifficultWord);
-    setLearnedWord(false);
+    if (isWord) {
+      // eslint-disable-next-line no-unused-expressions
+      isWord.difficulty === "hard"
+        ? setDifficultWord(true)
+        : (setLearnedWord(true), setStudyStatus(100));
+    }
   }, []);
 
-  const handleWordDifficultyChange = (wordId) => {
-    setDifficultWord(true);
-    userServisece.addWordUser(wordId, "hard");
+  const handleWordTypeChange = (wordId, type) => {
+    if (type === "hard") {
+      setDifficultWord(true);
+      setStudyStatus(0);
+      if (learnedWord) {
+        setLearnedWord(false);
+        userServisece.updateWordUser(wordId, "hard");
+      } else {
+        userServisece.addWordUser(wordId, "hard");
+      }
+    }
+    if (type === "easy") {
+      setLearnedWord(true);
+      setStudyStatus(100);
+      if (difficultWord) {
+        setDifficultWord(false);
+        userServisece.updateWordUser(wordId, "easy");
+      } else {
+        userServisece.addWordUser(wordId, "easy");
+      }
+    }
   };
 
   const handleWordDelete = (wordId) => {
@@ -36,7 +58,11 @@ const CardWord = ({ word }) => {
           className="row align-items-center"
           style={{
             boxShadow: `0 0.5rem 1rem rgba${
-              difficultWord ? "(255, 0, 0, 0.5)" : "(0, 0, 0, 0.2)"
+              difficultWord
+                ? "(255, 0, 0, 0.5)"
+                : learnedWord
+                ? "(6, 200, 80, 0.5)"
+                : "(0, 0, 0, 0.2)"
             }`
           }}
         >
@@ -71,6 +97,33 @@ const CardWord = ({ word }) => {
               ></i>{" "}
               {word.wordTranslate || word.wordId.wordTranslate}
             </h2>
+            {currentUser ? (
+              <div
+                style={{
+                  backgroundColor: "#DCDCDC"
+                }}
+                className="progress m-3 text-center"
+              >
+                <div
+                  className="progress-bar"
+                  role="progressbar"
+                  style={{
+                    width: `${studyStatus}%`,
+                    backgroundColor: "#76CDD8",
+                    color: "black"
+                  }}
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  {`Прогресс: ${studyStatus}%`}
+                </div>
+                {!studyStatus ? `Прогресс: ${studyStatus}%` : ""}
+              </div>
+            ) : (
+              ""
+            )}
+
             <hr />
             <h6
               dangerouslySetInnerHTML={{
@@ -99,21 +152,23 @@ const CardWord = ({ word }) => {
                   word.textMeaningTranslate || word.wordId.textMeaningTranslate
               }}
             ></h6>
-            <p className="mt-4">
+            <p className="mt-4 d-flex align-items-center">
               {currentUser ? (
                 difficultWord ? (
-                  <button className="btn btn-danger">Сложное слово</button>
+                  <button className="btn btn-danger" disabled>
+                    Сложное слово
+                  </button>
                 ) : (
                   <button
                     type="button"
                     className={`btn btn-danger`}
                     onClick={
-                      word.wordId
+                      word.difficulty === "hard"
                         ? () => handleWordDelete(word.wordId._id)
-                        : () => handleWordDifficultyChange(word.id)
+                        : () => handleWordTypeChange(word.id, "hard")
                     }
                   >
-                    {word.wordId
+                    {word.difficulty === "hard"
                       ? "Удалить из сложных слов"
                       : "Добавить в сложные слова"}
                   </button>
@@ -128,11 +183,17 @@ const CardWord = ({ word }) => {
                   word.audioMeaning || word.wordId.audioMeaning
                 ]}
               />
-              {currentUser ? (
+              {currentUser && word.difficulty !== "hard" ? (
                 learnedWord ? (
-                  <button className="btn btn-success">Слово изучено</button>
+                  <button className="btn btn-success ms-2" disabled>
+                    Слово изучено
+                  </button>
                 ) : (
-                  <button type="button" className={`btn btn-success ms-2`}>
+                  <button
+                    onClick={() => handleWordTypeChange(word.id, "easy")}
+                    type="button"
+                    className={`btn btn-success ms-2`}
+                  >
                     {word.wordId ? "Изучено" : "Добавить в изученые слова"}
                   </button>
                 )

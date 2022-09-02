@@ -15,6 +15,7 @@ http.interceptors.request.use(
     const isExpire = refreshToken && expiresData < Date.now();
 
     if (isExpire) {
+      localStorageService.removeAuthData();
       const { data } = await authService.refresh(
         localStorageService.getUserId()
       );
