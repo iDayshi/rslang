@@ -23,7 +23,7 @@ function App() {
     <>
       <AuthProvaider>
         <AudioCallProvaider>
-        <NavBar />
+          <NavBar />
           <WordProvaider>
             <SprintWordProvaider>
               <Switch>
@@ -33,9 +33,9 @@ function App() {
                 <Route path="/sprint" component={SprintPage} />
                 <Route path="/statistic" component={StatisticPage} />
                 <Route path="/dictionary" component={DictionaryPage} />
-                <Route path="/" exact component={MainPage} />
                 <Route path="/about" component={AboutApp} />
                 <Route path="/dreamTeam" component={AboutTeam} />
+                <Route path="/" exact component={MainPage} />
                 <Redirect to="/" />
               </Switch>
             </SprintWordProvaider>

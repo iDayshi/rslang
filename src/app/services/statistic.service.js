@@ -10,17 +10,33 @@ const statisticsServisece = {
     );
     return data;
   },
-  updateWordUser: async () => {
-    const { data } = await httpServise.put(
-      userStatisticsEndpoint + localStorageService.getUserId() + `/statistics`,
-      {
-        learnedWords: 0,
-        optional: {
-          day: Date.now()
+  updateStatisticsUser: async () => {
+    if (localStorageService.getUserId()) {
+      const { data } = await httpServise.put(
+        userStatisticsEndpoint +
+          localStorageService.getUserId() +
+          `/statistics`,
+        {
+          userId: localStorageService.getUserId(),
+          learnedWords: 0,
+          gamesAudioCall: {
+            learnedWords: 3
+          },
+          gamesSprint: {
+            learnedWords: 5
+          }
+        },
+        {
+          timestamps: { createdAt: "created_at" }
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+          }
         }
-      }
-    );
-    return data;
+      );
+      return data;
+    }
   }
 };
 

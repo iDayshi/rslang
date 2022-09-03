@@ -24,7 +24,7 @@ const NavBar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse">
+          <div className="collapse navbar-collapse ">
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link
@@ -32,9 +32,7 @@ const NavBar = () => {
                   aria-current="page"
                   to="/"
                 >
-                  <button className="nav_btn">
-                    RSLang
-                    </button>
+                  <button className="nav_btn">RSLang</button>
                 </Link>
               </li>
               <li className="nav-item">
@@ -43,7 +41,9 @@ const NavBar = () => {
                   to="/dictionary"
                 >
                   <button className="nav_btn">
-                    <a className="nav_element_text text-reset text-decoration-none">Учебник</a>
+                    <span className="nav_element_text text-reset text-decoration-none">
+                      Учебник
+                    </span>
                     <i className="bi bi-book"></i>
                   </button>
                 </Link>
@@ -55,7 +55,9 @@ const NavBar = () => {
                   onClick={handleClearWordsGame}
                 >
                   <button className="nav_btn">
-                    <a className="nav_element_text text-reset text-decoration-none">Аудиовызов</a>
+                    <span className="nav_element_text text-reset text-decoration-none">
+                      Аудиовызов
+                    </span>
                     <i className="bi bi-music-note-beamed"></i>
                   </button>
                 </Link>
@@ -66,7 +68,9 @@ const NavBar = () => {
                   to="/sprint"
                 >
                   <button className="nav_btn">
-                    <a className="nav_element_text text-reset text-decoration-none">Спринт</a>
+                    <span className="nav_element_text text-reset text-decoration-none">
+                      Спринт
+                    </span>
                     <i className="bi bi-stopwatch"></i>
                   </button>
                 </Link>
@@ -79,7 +83,9 @@ const NavBar = () => {
                       to="/statistic"
                     >
                       <button className="nav_btn">
-                        <a className="nav_element_text text-reset text-decoration-none">Статистика</a>
+                        <span className="nav_element_text text-reset text-decoration-none">
+                          Статистика
+                        </span>
                         <i className="bi bi-clipboard2-data"></i>
                       </button>
                     </Link>
@@ -92,7 +98,10 @@ const NavBar = () => {
             {currentUser ? (
               <NavProfole />
             ) : (
-              <Link className="nav-item active text-reset text-decoration-none" to="/login">
+              <Link
+                className="nav-item active text-reset text-decoration-none"
+                to="/login"
+              >
                 <i className="bi bi-key"></i>
                 Login
               </Link>
