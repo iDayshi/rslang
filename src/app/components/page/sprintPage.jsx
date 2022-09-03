@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Disable } from "react-disable";
+import { Link } from "react-router-dom";
 
 import { useSprintWord } from "../../hooks/useSprintWords";
 
@@ -45,7 +46,7 @@ const SprintPage = () => {
         </div>
       </div>
       {levelChoosed ? (
-        <div className="button-reset">
+        <div className="footer-buttons d-flex m-3">
           <button
             type="button"
             className="btn btn-outline-danger btn-lg"
@@ -53,6 +54,11 @@ const SprintPage = () => {
           >
             Reset
           </button>
+          <Link className="nav-link" aria-current="page" to="/">
+            <button className="btn btn-outline-info btn-lg ms-3">
+              Back to Main
+            </button>
+          </Link>
         </div>
       ) : (
         <></>

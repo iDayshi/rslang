@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import SprintCountdown from "./sprintCountdown";
 import SprintTimer from "./sprintTimer";
@@ -13,11 +13,15 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
   const [isFakeIndex, setIsFakeIndex] = useState(false);
   const [translationIndex, setTranslationIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [allAnswers, setAllAnswers] = useState(0);
+  const [allRigthAnswers, setAllRightAnswers] = useState(0);
   const [scoreCoeff, setScoreCoeff] = useState(1);
   const [statusIcon, setRightIcon] = useState(
     "bi bi-question-circle-fill text-center col"
   );
   const [finished, setFinished] = useState(false);
+  const [rigthAnswers, setRigthAnswers] = useState([]);
+  const [wrongAnswers, setWrongAnswers] = useState([]);
 
   const resultPhrases = ["Keep going!", "Not Bad!!", "Awesome!!!"]; // set final result phrase
   const getResultPhrase = () => {
@@ -26,7 +30,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
       return resultPhrases[0];
     } else if (score < 50) {
       return resultPhrases[1];
-    } else return resultPhrases[3];
+    } else return resultPhrases[2];
   };
 
   (function () {
@@ -62,6 +66,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
 
     setCardIndex(cardIndex + 1);
     defineIsFake();
+    setAllAnswers(allAnswers + 1);
 
     isFakeIndex
       ? setTranslationIndex(fakeTranslationIndex)
@@ -76,10 +81,25 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
       playRight();
       setScore(score + scoreCoeff);
       setRightIcon("bi bi-check-circle-fill text-center col");
+      setAllRightAnswers(allRigthAnswers + 1);
+      setRigthAnswers([
+        ...rigthAnswers,
+        {
+          word: selectWords[cardIndex].word,
+          translate: selectWords[cardIndex].wordTranslate
+        }
+      ]);
     } else {
       playWrong();
       setScoreCoeff(1);
       setRightIcon("bi bi-emoji-frown-fill text-center col");
+      setWrongAnswers([
+        ...wrongAnswers,
+        {
+          word: selectWords[cardIndex].word,
+          translate: selectWords[cardIndex].wordTranslate
+        }
+      ]);
     }
     commonButtonAction();
   };
@@ -92,12 +112,40 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
       playRight();
       setScore(score + scoreCoeff);
       setRightIcon("bi bi-check-circle-fill text-center col");
+      setAllRightAnswers(allRigthAnswers + 1);
+      setRigthAnswers([
+        ...rigthAnswers,
+        {
+          word: selectWords[cardIndex].word,
+          translate: selectWords[cardIndex].wordTranslate
+        }
+      ]);
     } else {
       playWrong();
       setScoreCoeff(1);
       setRightIcon("bi bi-emoji-frown-fill text-center col");
+      setWrongAnswers([
+        ...wrongAnswers,
+        {
+          word: selectWords[cardIndex].word,
+          translate: selectWords[cardIndex].wordTranslate
+        }
+      ]);
     }
     commonButtonAction();
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", getKeyDown, true);
+  }, []);
+
+  const getKeyDown = (e) => {
+    console.log("Clicked: ", e.key);
+    if (e.key === "ArrowLeft") {
+      wrongButtonAction();
+    } else if (e.key === "ArrowRight") {
+      rightButtonAction();
+    }
   };
 
   return (
@@ -129,7 +177,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                   </div>
                 </div>
 
-                <div className="check-mark row">
+                <div className="check-mark row my-auto">
                   <i className={statusIcon}></i>
                 </div>
 
@@ -176,6 +224,34 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
             <h1>
               Your score: {score} - {getResultPhrase()}
             </h1>
+            <div>
+              During the attempt, {allAnswers} words were compared.{" "}
+              {allRigthAnswers} words were answered correctly, which is{" "}
+              {Math.floor((100 * allRigthAnswers) / allAnswers)} %
+            </div>
+            <div className="answers-result d-flex">
+              <div className="rigth-answers">
+                <h3>Right answers:</h3>
+                {rigthAnswers.map((item) => {
+                  return (
+                    <div className="right-answer" key={item.id}>
+                      {item.word} - {item.translate}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="wrong-answers">
+                <h3>Wrong answers:</h3>
+                {wrongAnswers.map((item) => {
+                  return (
+                    <div className="wrong-answer" key={item.id}>
+                      {item.word} - {item.translate}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       ) : (

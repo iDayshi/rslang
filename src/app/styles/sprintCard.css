@@ -6,6 +6,15 @@ i {
   font-size: 2rem;
 }
 
+.bi-question-circle-fill {
+  flex-grow: auto;
+  font-size: 2rem;
+}
+
+.card-title-top > i {
+  font-size: 2rem;
+}
+
 .bi-check-circle-fill {
   font-size: 2rem;
   color: green;
@@ -26,4 +35,26 @@ i {
 
 .card {
   padding: 1rem;
+}
+
+.card-body > div {
+  flex-wrap: nowrap;
+}
+
+.check-mark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-mark > i {
+  font-size: 2rem;
+}
+
+.row {
+  justify-content: center;
+}
+
+.answers-result {
+  justify-content: space-between;
 }
