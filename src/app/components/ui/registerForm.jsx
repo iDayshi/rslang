@@ -81,9 +81,8 @@ const RegisterForm = () => {
     try {
       await signUp(data);
       history.push("/");
-    } catch (error) {
-      console.log(error);
-      setErrors(error);
+    } catch (e) {
+      setErrors(e);
     }
   };
 

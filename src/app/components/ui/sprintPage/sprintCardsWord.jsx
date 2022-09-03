@@ -66,8 +66,6 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
     isFakeIndex
       ? setTranslationIndex(fakeTranslationIndex)
       : setTranslationIndex(cardIndex + 1);
-
-    console.log("indexes", cardIndex, translationIndex, fakeTranslationIndex);
   };
 
   const wrongButtonAction = () => {
