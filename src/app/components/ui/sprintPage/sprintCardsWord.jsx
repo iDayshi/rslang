@@ -47,10 +47,6 @@ const SprintCardWord = ({ selectWords }) => {
     setIsFakeIndex(!!isfake);
   };
 
-  // const playStart = () => {
-  //   new Audio(startSound).play();
-  // };
-
   const playRight = () => {
     new Audio(rightSound).play();
   };
@@ -72,8 +68,6 @@ const SprintCardWord = ({ selectWords }) => {
     isFakeIndex
       ? setTranslationIndex(fakeTranslationIndex)
       : setTranslationIndex(cardIndex + 1);
-
-    console.log("indexes", cardIndex, translationIndex, fakeTranslationIndex);
   };
 
   const wrongButtonAction = () => {

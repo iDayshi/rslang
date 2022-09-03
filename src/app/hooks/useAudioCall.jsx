@@ -48,7 +48,9 @@ const AudioCallProvaider = ({ children }) => {
         isLoading,
         wordsGameDictionary,
         getWordsGame,
-        setWordsGameDictionary
+        setWordsGame,
+        setWordsGameDictionary,
+        setLoading
       }}
     >
       {children}

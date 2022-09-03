@@ -13,8 +13,6 @@ const SprintPage = () => {
     getAllGroupWords(groupIndex);
   };
 
-  console.log("finalArr", allGroupWords);
-
   return (
     <div className="d-flex flex-column align-items-center justify-content-center m-5">
       <h1 className="text-center">Sprint-Game</h1>

@@ -56,8 +56,8 @@ const WordProvaider = ({ children }) => {
       );
       setWords(content);
       setLoading(false);
-    } catch {
-      errorCatcher(error);
+    } catch (e) {
+      errorCatcher(e);
     }
   }
 
@@ -67,7 +67,7 @@ const WordProvaider = ({ children }) => {
       setWordsUser(content);
       setLoadingUserWords(false);
       setLoading(false);
-    } catch {
+    } catch (e) {
       errorCatcher(error);
     }
   }

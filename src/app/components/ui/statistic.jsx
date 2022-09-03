@@ -12,7 +12,12 @@ const Statistic = ({ name }) => {
       <div className="row">
         <div className="col-xl-3 col-sm-6 col-12 mb-4">
           <div className="card">
-            <div className="card-body">
+            <div
+              className="card-body"
+              style={{
+                padding: "0px"
+              }}
+            >
               <div className="d-flex justify-content-between px-md-1">
                 <div className="align-self-center">
                   <svg
@@ -36,7 +41,12 @@ const Statistic = ({ name }) => {
         </div>
         <div className="col-xl-3 col-sm-6 col-12 mb-4">
           <div className="card">
-            <div className="card-body">
+            <div
+              className="card-body"
+              style={{
+                padding: "0px"
+              }}
+            >
               <div className="d-flex justify-content-between px-md-1">
                 <div className="align-self-center">
                   <svg
@@ -60,7 +70,12 @@ const Statistic = ({ name }) => {
         </div>
         <div className="col-xl-3 col-sm-6 col-12 mb-4">
           <div className="card">
-            <div className="card-body">
+            <div
+              className="card-body"
+              style={{
+                padding: "0px"
+              }}
+            >
               <div className="d-flex justify-content-between px-md-1">
                 <div className="align-self-center">
                   <svg
@@ -85,7 +100,12 @@ const Statistic = ({ name }) => {
         </div>
         <div className="col-xl-3 col-sm-6 col-12 mb-4">
           <div className="card">
-            <div className="card-body">
+            <div
+              className="card-body"
+              style={{
+                padding: "0px"
+              }}
+            >
               <div className="d-flex justify-content-between px-md-1">
                 <div className="align-self-center">
                   <svg
