@@ -10,7 +10,7 @@ const Answer = ({ isRight, correctAnswer, onNextQuestion }) => {
           isRight ? "audiocall_correct_header" : "audiocall_wrong_header"
         }
       >
-        🌈 {isRight ? "Правильно!" : "Неверно"}
+         {isRight ? "🌈 Правильно!" : " ☁️ Неверно"}
       </h3>
       <section>
         <div className="audiocall_wordcard">

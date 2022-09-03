@@ -25,15 +25,15 @@ const AudioCallPage = () => {
   const [view, setView] = useState("game");
 
   useEffect(() => {
-    if (nextRound && wordCounter < 5) {
+    if (nextRound && wordCounter < 10) {
       setView("game");
       setNextRound(!nextRound);
       setWordCounter(wordCounter + 1);
-      if (wordCounter < 4) {
+      if (wordCounter < 9) {
         makeWords();
       }
     }
-    if (wordCounter === 5) {
+    if (wordCounter === 10) {
       setView("result");
       setWordCounter(0);
       setQuizWords([]);
@@ -65,7 +65,7 @@ const AudioCallPage = () => {
       setScore(score + 1);
       setStrick(strick + 1);
       setView("answer_true");
-      if (wordCounter === 4) {
+      if (wordCounter === 9) {
         setSeries(strick + 1);
       }
       setCorrectAnswers([...correctAnswers, quizWords[correctPosition]]);

@@ -67,7 +67,7 @@ code {
   background-image: url(../assets/book.jpg);
   background-position: bottom;
   background-size: cover;
-  height: 80vh;
+  height: calc(93vh - 64px);
   display: flex;
 }
 
@@ -136,6 +136,7 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 7vh;
 }
 
 .team {
@@ -178,7 +179,6 @@ code {
 
 .top_line {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   background-color: #ffffffc4;
@@ -240,6 +240,13 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.word_number {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: .2rem;
+  color: #118a0d;
 }
 
 /* _ _ _ buttons _ _ _ */
@@ -323,9 +330,13 @@ code {
   padding-top: 13px;
 }
 
-.info_button {
+.audio-info {
   border: none;
   background: rgba(255, 255, 255, 0);
+}
+
+.audio-info:hover {
+  color:#f76708
 }
 
 /* _________ Team Page _________ */
@@ -334,7 +345,7 @@ code {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 80vh;
+  height: calc(93vh - 64px);
   background: #fad0c4;
   background: linear-gradient(
     to top,
@@ -391,7 +402,7 @@ code {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 80vh;
+  height: calc(93vh - 64px);
   font-family: Montserrat-Regular;
   border: 5px solid #c5c5c525;
   background-image: url("../assets/about_bcg.JPG");

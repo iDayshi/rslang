@@ -32,14 +32,14 @@ const Game = ({ roundWords, onCheck, onSkipQuestion, correctPosition }) => {
       </section>
 
       <section className="d-flex justify-content-center audio_game_words">
-        {roundWords.map((word) => {
+        {roundWords.map((word, index) => {
           return (
             <div key={word.id}>
               <button
                 onClick={() => onCheck(word.right)}
                 className="audiocall_word_button"
               >
-                {" "}
+                <span className="word_number">{index + 1}</span>{" "}
                 {word.wordTranslate}{" "}
               </button>
             </div>

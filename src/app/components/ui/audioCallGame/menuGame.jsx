@@ -5,7 +5,7 @@ import ModalWindow from "../../common/modalAudioCallGame";
 import PropTypes from "prop-types";
 
 const MenuGame = ({ onStart, check }) => {
-  const [modalShow, setModalShow] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
   const [level, setLevel] = useState(0);
   const { getWordsGame, isLoading } = useAudioCall();
 
@@ -18,6 +18,7 @@ const MenuGame = ({ onStart, check }) => {
     <div className="container audiocall_page">
       <div className="top_line">
         <h2 className="audio_call_name">Аудиовызов</h2>
+        <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
       </div>
 
       <section className="text-center white_bcg">
