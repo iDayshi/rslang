@@ -3,16 +3,14 @@ import PropTypes from "prop-types";
 import SprintCountdown from "./sprintCountdown";
 import SprintTimer from "./sprintTimer";
 
-// import startSound from "./sounds/start.mp3";
 import rightSound from "./sounds/right.mp3";
 import wrongSound from "./sounds/wrong.mp3";
 import finishSound from "./sounds/finish.mp3";
 
-const SprintCardWord = ({ selectWords }) => {
+const SprintCardWord = ({ selectWords, onStart, check }) => {
   const [countdown, setCountdown] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
   const [isFakeIndex, setIsFakeIndex] = useState(false);
-  // const [fakeCardIndex, setFakeCardIndex] = useState(50);
   const [translationIndex, setTranslationIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [scoreCoeff, setScoreCoeff] = useState(1);
@@ -46,10 +44,6 @@ const SprintCardWord = ({ selectWords }) => {
     const isfake = Math.floor(Math.random() * 2);
     setIsFakeIndex(!!isfake);
   };
-
-  // const playStart = () => {
-  //   new Audio(startSound).play();
-  // };
 
   const playRight = () => {
     new Audio(rightSound).play();
@@ -194,7 +188,9 @@ const SprintCardWord = ({ selectWords }) => {
 };
 
 SprintCardWord.propTypes = {
-  selectWords: PropTypes.array
+  selectWords: PropTypes.array,
+  onStart: PropTypes.func,
+  check: PropTypes.bool
 };
 
 export default SprintCardWord;
