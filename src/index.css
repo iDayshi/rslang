@@ -61,6 +61,15 @@ code {
   background-color: #b1be864b;
 }
 
+.sandwich {
+  font-family: Montserrat-Regular;
+  font-size: 16px;
+}
+
+.sandwich-el {
+  margin: 20px !important;
+}
+
 /* _________ MAIN Page _________ */
 
 .main_wrapper {
@@ -491,6 +500,15 @@ code {
   }
 }
 
+@media (min-width: 576px) and (max-width: 992px) {
+  .nav_element_text {
+    display: none;
+  }
+  .nav_btn {
+    width: 60px;
+  }
+}
+
 @media (max-width: 700px) {
   .audiocall_word_button {
     font-size: 14px;
@@ -523,12 +541,9 @@ code {
     height: 60px;
     margin-bottom: 10px;
   }
-
-  .nav_btn {
-    width: 60px;
-  }
-
-  .nav_element_text {
-    display: none;
+  
+  .footer_info_wrapper {
+    display: flex;
+    flex-direction: column;
   }
 }
