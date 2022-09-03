@@ -16,9 +16,6 @@ const NavBar = () => {
     <>
       <nav className="navbar navbar-expand-sm navbar-light">
         <div className="container">
-          <a className="navbar-brand text-info" href="/">
-            Красивый логотип
-          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -35,7 +32,9 @@ const NavBar = () => {
                   aria-current="page"
                   to="/"
                 >
-                  Главная страница
+                  <button className="nav_btn">
+                    RSLang
+                    </button>
                 </Link>
               </li>
               <li className="nav-item">
@@ -43,7 +42,10 @@ const NavBar = () => {
                   className="nav-link text-sm-center nav-link active m-1"
                   to="/dictionary"
                 >
-                  Учебник
+                  <button className="nav_btn">
+                    <a className="nav_element_text text-reset text-decoration-none">Учебник</a>
+                    <i className="bi bi-book"></i>
+                  </button>
                 </Link>
               </li>
               <li className="nav-item">
@@ -52,7 +54,10 @@ const NavBar = () => {
                   to="/audiocall"
                   onClick={handleClearWordsGame}
                 >
-                  Аудиовызов
+                  <button className="nav_btn">
+                    <a className="nav_element_text text-reset text-decoration-none">Аудиовызов</a>
+                    <i className="bi bi-music-note-beamed"></i>
+                  </button>
                 </Link>
               </li>
               <li className="nav-item">
@@ -60,7 +65,10 @@ const NavBar = () => {
                   className="nav-link text-sm-center nav-link active m-1"
                   to="/sprint"
                 >
-                  Спринт
+                  <button className="nav_btn">
+                    <a className="nav_element_text text-reset text-decoration-none">Спринт</a>
+                    <i className="bi bi-stopwatch"></i>
+                  </button>
                 </Link>
               </li>
               {currentUser && (
@@ -70,7 +78,10 @@ const NavBar = () => {
                       className="nav-link text-sm-center nav-link active m-1"
                       to="/statistic"
                     >
-                      Статистика
+                      <button className="nav_btn">
+                        <a className="nav_element_text text-reset text-decoration-none">Статистика</a>
+                        <i className="bi bi-clipboard2-data"></i>
+                      </button>
                     </Link>
                   </li>
                 </>
@@ -81,7 +92,8 @@ const NavBar = () => {
             {currentUser ? (
               <NavProfole />
             ) : (
-              <Link className="nav-item active" to="/login">
+              <Link className="nav-item active text-reset text-decoration-none" to="/login">
+                <i className="bi bi-key"></i>
                 Login
               </Link>
             )}

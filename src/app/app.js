@@ -12,6 +12,8 @@ import SprintWordProvaider from "./hooks/useSprintWords";
 import LogOut from "./layouts/logOut";
 import AudioCallPage from "./components/page/audioCallPage";
 import SprintPage from "./components/page/sprintPage";
+import AboutApp from "./components/page/about";
+import AboutTeam from "./components/page/dreamTeam";
 import StatisticPage from "./components/page/statisticPage";
 import DictionaryPage from "./components/page/dictionaryPage";
 import AudioCallProvaider from "./hooks/useAudioCall";
@@ -32,6 +34,8 @@ function App() {
                 <Route path="/statistic" component={StatisticPage} />
                 <Route path="/dictionary" component={DictionaryPage} />
                 <Route path="/" exact component={MainPage} />
+                <Route path="/about" component={AboutApp} />
+                <Route path="/dreamTeam" component={AboutTeam} />
                 <Redirect to="/" />
               </Switch>
             </SprintWordProvaider>
