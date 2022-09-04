@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAudioCall } from "../../hooks/useAudioCall";
 import { useAuth } from "../../hooks/useAuth";
@@ -7,7 +7,10 @@ import NavProfole from "./navProfile";
 const NavBar = () => {
   const { currentUser } = useAuth();
   const { setWordsGameDictionary } = useAudioCall();
-
+  const [isOpen, setOpen] = useState(false);
+  const toggleMenu = () => {
+    setOpen((prevState) => !prevState);
+  };
   const handleClearWordsGame = () => {
     setWordsGameDictionary([]);
   };
@@ -22,7 +25,51 @@ const NavBar = () => {
             data-toggle="collapse"
             data-target="#navbar1"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" onClick={toggleMenu}></span>
+            <div
+              className={"w-50 dropdown-menu sandwich" + (isOpen ? " show" : "")}
+            >
+              <Link
+                className="nav-link sandwich-el"
+                aria-current="page"
+                to="/"
+                onClick={toggleMenu}
+              >
+                RSLang
+              </Link>
+              <Link
+                className="nav-link sandwich-el"
+                to="/dictionary"
+                onClick={toggleMenu}
+              >
+                Учебник
+              </Link>
+              <Link
+                className="nav-link sandwich-el"
+                to="/audiocall"
+                onClick={handleClearWordsGame}
+              >
+                Аудиовызов
+              </Link>
+              <Link
+                className="nav-link sandwich-el"
+                to="/sprint"
+                onClick={toggleMenu}
+              >
+                Спринт
+              </Link>
+              {currentUser && (
+                <>
+                  <Link
+                    className="nav-link sandwich-el"
+                    to="/statistic"
+                    onClick={toggleMenu}
+                  >
+                    Статистика
+                  </Link>
+                </>
+              )}
+            </div>
           </button>
           <div className="collapse navbar-collapse ">
             <ul className="navbar-nav">

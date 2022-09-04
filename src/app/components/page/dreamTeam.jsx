@@ -40,7 +40,7 @@ const AboutTeam = () => {
           <p>Игра Спринт. Хорошее настроение.</p>
           <p>
             <i className="bi bi-info-circle"></i>
-            <i className="bi">Нравится ездить в командировки</i>
+            <i className="bi">Нравится ездить в командировки (Шпиён)</i>
           </p>
           <div className="unicorn2"></div>
         </article>

@@ -10,8 +10,8 @@ const Result = ({ correctAnswers, wrongAnswers, newGame, series }) => {
       <section className="audiocoll_results">
         <h3 className="audiocall_header"> Результаты игры </h3>
         <div>
-          {Math.floor((100 * correctAnswers.length) / 5)} % правильных ответов.{" "}
-          {correctAnswers.length} из 5 слов верны
+          {Math.floor((100 * correctAnswers.length) / 10)} % правильных ответов.{" "}
+          {correctAnswers.length} из 10 слов верны
         </div>
         <div>{series + " правильных ответов подряд"}</div>
         <div>
