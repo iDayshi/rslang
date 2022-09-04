@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Game from "./game";
 import Answer from "./answer";
+import ModalWindow from "../../common/modalAudioCallGame";
 
 const Question = ({
   wordCounter,
@@ -51,13 +52,17 @@ const Question = ({
     }
   };
 
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <div className="container audiocall_page">
+      <ModalWindow show={modalShow} onHide={() => setModalShow(false)} />
       <div className="top_line">
         <h2 className="audio_call_name">Аудиовызов</h2>
+        <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
       </div>
       <h4 className="audiocall_header_small">
-        Вопрос {wordCounter + 1} из 5. Счет: {score}
+        Вопрос {wordCounter + 1} из 10. Счет: {score}
       </h4>
       {view === "game" ? (
         <Game
