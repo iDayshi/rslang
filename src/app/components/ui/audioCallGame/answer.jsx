@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useWord } from "../../../hooks/useWords";
 
 const Answer = ({ isRight, correctAnswer, onNextQuestion }) => {
+  const { gameResultsCheck } = useWord();
   delete correctAnswer.right;
+
+  useEffect(() => {
+    if (correctAnswer) {
+      gameResultsCheck(correctAnswer, isRight);
+    }
+  }, []);
+
   return (
     <>
       <h3
