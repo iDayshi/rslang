@@ -12,6 +12,8 @@ import SprintWordProvaider from "./hooks/useSprintWords";
 import LogOut from "./layouts/logOut";
 import AudioCallPage from "./components/page/audioCallPage";
 import SprintPage from "./components/page/sprintPage";
+import AboutApp from "./components/page/about";
+import AboutTeam from "./components/page/dreamTeam";
 import StatisticPage from "./components/page/statisticPage";
 import DictionaryPage from "./components/page/dictionaryPage";
 import AudioCallProvaider from "./hooks/useAudioCall";
@@ -21,7 +23,7 @@ function App() {
     <>
       <AuthProvaider>
         <AudioCallProvaider>
-        <NavBar />
+          <NavBar />
           <WordProvaider>
             <SprintWordProvaider>
               <Switch>
@@ -31,6 +33,8 @@ function App() {
                 <Route path="/sprint" component={SprintPage} />
                 <Route path="/statistic" component={StatisticPage} />
                 <Route path="/dictionary" component={DictionaryPage} />
+                <Route path="/about" component={AboutApp} />
+                <Route path="/dreamTeam" component={AboutTeam} />
                 <Route path="/" exact component={MainPage} />
                 <Redirect to="/" />
               </Switch>

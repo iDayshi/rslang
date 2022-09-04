@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useWord } from "../../hooks/useWords";
 import GroupWords from "../common/groupWords";
-import Pagination from "../common/pagination";
+import PaginationComponent from "../common/pagination";
 import Footer from "../ui/footer";
 import CardWordList from "../ui/dictionary/wordCardsList";
 import { useAudioCall } from "../../hooks/useAudioCall";
@@ -57,9 +57,11 @@ const DictionaryPage = () => {
               </div>
             </div>
             {currentGroup !== 6 ? (
-              <Pagination
+              <PaginationComponent
                 currentPage={currentPage + 1}
-                onPageChange={handlePageChange}
+                setCurrentPage={setCurrentPage}
+                handlePageChange={handlePageChange}
+                alwaysShown={false}
               />
             ) : (
               ""

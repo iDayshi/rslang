@@ -84,7 +84,7 @@ const SprintWordProvaider = ({ children }) => {
     <SprintWordContext.Provider
       value={{ words, allGroupWords, getWordsById, getWords, getAllGroupWords }}
     >
-      {!isLoading ? children : "Загрузка слов....и супер красивый спинер"}
+      {children}
     </SprintWordContext.Provider>
   );
 };

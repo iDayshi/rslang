@@ -10,28 +10,22 @@ const Footer = () => {
           </a>
           <div className="team">
             <div className="git_person">
-              <a href="https://github.com/iDayshi" className="github_logo"></a>
               <a href="https://github.com/iDayshi" className="github_name">
-                {" "}
-                Maksim{" "}
+                <i className="bi bi-github"></i> Maksim{" "}
               </a>
             </div>
             <div className="git_person">
-              <a href="https://github.com/Macbaren" className="github_logo"></a>
               <a href="https://github.com/Macbaren" className="github_name">
-                {" "}
-                Andrey{" "}
+                <i className="bi bi-github"></i> Andrey{" "}
               </a>
             </div>
             <div className="git_person">
-              <a href="https://github.com/4Quark" className="github_logo"></a>
               <a href="https://github.com/4Quark" className="github_name">
-                {" "}
-                Maria{" "}
+                <i className="bi bi-github"></i> Maria{" "}
               </a>
             </div>
           </div>
-          <a>© RSSchool, 2022</a>
+          © RSSchool, 2022
         </div>
       </div>
     </footer>

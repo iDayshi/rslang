@@ -5,8 +5,13 @@ import Question from "../ui/audioCallGame/question";
 import Result from "../ui/audioCallGame/result";
 
 const AudioCallPage = () => {
-  const { wordsGame, wordsGameDictionary, setWordsGameDictionary } =
-    useAudioCall();
+  const {
+    wordsGame,
+    wordsGameDictionary,
+    setWordsGame,
+    setWordsGameDictionary,
+    setLoading
+  } = useAudioCall();
   const [quizWords, setQuizWords] = useState([]);
   const [correctPosition, setCorrectPosition] = useState(0);
   const [nextRound, setNextRound] = useState(false);
@@ -31,7 +36,10 @@ const AudioCallPage = () => {
     if (wordCounter === 5) {
       setView("result");
       setWordCounter(0);
+      setQuizWords([]);
+      setWordsGame([]);
       setWordsGameDictionary([]);
+      setLoading(true);
     }
   }, [nextRound]);
 
@@ -53,7 +61,6 @@ const AudioCallPage = () => {
   };
 
   const handleCheck = async (isTrue) => {
-    console.log(isTrue);
     if (isTrue) {
       setScore(score + 1);
       setStrick(strick + 1);
@@ -70,7 +77,6 @@ const AudioCallPage = () => {
       setStrick(0);
       setWrongAnswers([...wrongAnswers, quizWords[correctPosition]]);
     }
-    console.log(wordCounter);
   };
 
   const makeWords = () => {
