@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useStatistic } from "../../hooks/useStatistic";
 
 const Statistic = ({ name }) => {
+  const { statistics } = useStatistic();
+
   return (
     <section>
       <div className="row">
@@ -32,7 +35,7 @@ const Statistic = ({ name }) => {
                   </svg>
                 </div>
                 <div className="text-end">
-                  <h3 className="text-info">278</h3>
+                  <h3 className="text-info">{statistics.learnedWords}</h3>
                   <p className="mb-0">Новых слов</p>
                 </div>
               </div>

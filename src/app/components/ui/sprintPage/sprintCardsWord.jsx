@@ -150,68 +150,77 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
 
   return (
     <>
-      <div className="card-container d-flex flex-column justify-content-around align-items-center">
+      <div className="card-container">
         {!countdown ? (
           <SprintCountdown />
         ) : !finished ? (
-          <div className="main-card col-xs-12 col-sm-6 col-md-4 w-50">
-            <SprintTimer />
-            <div className="card">
-              <div className="sprint-score-coeff d-flex justify-content-center align-items-center">
-                <h5>Score Coefficient x {scoreCoeff}</h5>
-              </div>
-              <div className="sprint-score d-flex justify-content-center align-items-center">
-                <h3>Total Score: {score}</h3>
-              </div>
-
-              <div className="card-body container">
-                <div className="words-underline row">
-                  <div className="card-title-top col-5 text-end my-auto">
-                    <h5>word</h5>
-                  </div>
-
-                  <i className="bi bi-arrow-down-circle-fill col-2 text-center my-auto"></i>
-
-                  <div className="card-title-top col-5 text-start my-auto">
-                    <h5>translation</h5>
-                  </div>
+          <div className="main-card">
+            <div className="sprint-card">
+              <div className="sprint-card-score">
+                <div className="sprint-score">
+                  <h4>Total Score: {score} </h4>
                 </div>
-
-                <div className="check-mark row my-auto">
-                  <i className={statusIcon}></i>
-                </div>
-
-                <div className="words-translation row">
-                  <div className="card-title col-5 text-end my-auto">
-                    <h3>{selectWords[cardIndex].word}</h3>
-                  </div>
-
-                  <i className="bi bi-arrow-up-circle-fill text-center col-2"></i>
-
-                  <div className="card-title col-5 text-start my-auto">
-                    <h3>{selectWords[translationIndex].wordTranslate}</h3>
-                  </div>
-                </div>
-
-                <hr />
-                <div className="button-group row">
-                  <button
-                    type="button"
-                    className="btn btn-danger btn-md col-5"
-                    onClick={() => wrongButtonAction()}
-                  >
-                    Wrong
-                  </button>
-                  <i className="bi bi-grip-vertical col-2 text-center"></i>
-                  <button
-                    type="button"
-                    className="btn btn-success btn-md col-5"
-                    onClick={() => rightButtonAction()}
-                  >
-                    Right
-                  </button>
+                <div className="sprint-score-coeff">
+                  <p className="bi"> (Score Coefficient x {scoreCoeff})</p>
                 </div>
               </div>
+
+              <section className="sprint-question">
+
+              <SprintTimer />
+
+              <div className="sprint-question-right">
+
+                <div className="card-body container">
+                  <div className="words-underline row">
+                    <div className="card-title-top col-5 text-end my-auto">
+                      <span>word</span>
+                    </div>
+
+                    <i className="bi bi-arrow-down-circle-fill col-2 text-center my-auto"></i>
+
+                    <div className="card-title-top col-5 text-start my-auto">
+                      <span>translation</span>
+                    </div>
+                  </div>
+
+                  <div className="check-mark row my-auto">
+                    <i className={statusIcon}></i>
+                  </div>
+
+                  <div className="words-translation row">
+                    <div className="card-title col-5 text-end my-auto">
+                      <h3>{selectWords[cardIndex].word}</h3>
+                    </div>
+
+                    <i className="bi bi-arrow-up-circle-fill text-center col-2"></i>
+
+                    <div className="card-title col-5 text-start my-auto">
+                      <h3>{selectWords[translationIndex].wordTranslate}</h3>
+                    </div>
+                  </div>
+
+                  <hr />
+                  <div className="button-group row">
+                    <button
+                      type="button"
+                      className="sprint-wrong-btn"
+                      onClick={() => wrongButtonAction()}
+                    >
+                      Wrong
+                    </button>
+                    <i className="bi bi-grip-vertical col-2 text-center"></i>
+                    <button
+                      type="button"
+                      className="sprint-right-btn"
+                      onClick={() => rightButtonAction()}
+                    >
+                      Right
+                    </button>
+                  </div>
+                </div>
+              </div>
+              </section>
             </div>
           </div>
         ) : (
@@ -220,7 +229,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
       </div>
       {finished ? (
         <div className="card-container d-flex flex-column justify-content-around align-items-center">
-          <div className="main-card col-xs-12 col-sm-6 col-md-4 w-50">
+          <div className="sprint-result">
             <h1>
               Your score: {score} - {getResultPhrase()}
             </h1>
@@ -230,24 +239,56 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
               {Math.floor((100 * allRigthAnswers) / allAnswers)} %
             </div>
             <div className="answers-result d-flex">
-              <div className="rigth-answers">
+              <div className="rigth-answers answers-list">
                 <h3>Right answers:</h3>
                 {rigthAnswers.map((item) => {
                   return (
-                    <div className="right-answer" key={item.id}>
-                      {item.word} - {item.translate}
-                    </div>
+                    <div key={item.id}>
+                    <button
+                      onClick={() => {
+                        const playWord = new Audio(
+                          `http://localhost:8080/${item.audio}`
+                        );
+                        playWord.play();
+                      }}
+                      className="btn btn-success m-2"
+                    >
+                      ♬
+                    </button>
+                    <span>
+                      {" "}
+                      {item.word}
+                      {" - "}
+                      {item.translate}
+                    </span>
+                  </div>
                   );
                 })}
               </div>
 
-              <div className="wrong-answers">
+              <div className="wrong-answers answers-list">
                 <h3>Wrong answers:</h3>
                 {wrongAnswers.map((item) => {
                   return (
-                    <div className="wrong-answer" key={item.id}>
-                      {item.word} - {item.translate}
-                    </div>
+                    <div key={item.id}>
+                    <button
+                      onClick={() => {
+                        const playWord = new Audio(
+                          `http://localhost:8080/${item.audio}`
+                        );
+                        playWord.play();
+                      }}
+                      className="btn btn-danger m-2"
+                    >
+                      ♬
+                    </button>
+                    <span>
+                      {" "}
+                      {item.word}
+                      {" - "}
+                      {item.translate}
+                    </span>
+                  </div>
                   );
                 })}
               </div>

@@ -20,10 +20,8 @@ const DictionaryPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    if (!isLoading) {
-      setWordsGameDictionary(words);
-    }
-  }, [isLoading]);
+    setWordsGameDictionary(words);
+  }, [words]);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
