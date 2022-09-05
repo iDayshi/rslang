@@ -30,7 +30,7 @@ const WordProvaider = ({ children }) => {
       getWords();
       setLoadingUserWords(false);
     }
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     checkPageExplored(words, wordsUser);
@@ -56,8 +56,8 @@ const WordProvaider = ({ children }) => {
       );
       setWords(content);
       setLoading(false);
-    } catch (e) {
-      errorCatcher(e);
+    } catch (error) {
+      errorCatcher(error);
     }
   }
 
@@ -67,7 +67,7 @@ const WordProvaider = ({ children }) => {
       setWordsUser(content);
       setLoadingUserWords(false);
       setLoading(false);
-    } catch (e) {
+    } catch (error) {
       errorCatcher(error);
     }
   }
@@ -79,29 +79,82 @@ const WordProvaider = ({ children }) => {
         prevState.filter((w) => w.wordId._id !== wordId)
       );
       setLoading(false);
-    } catch {
+    } catch (error) {
       errorCatcher(error);
     }
   }
 
-  function errorCatcher(error) {
-    const { message } = error.response.data;
-    setError(message);
+  async function gameResultsCheck(wordGame, isRight) {
+    try {
+      const checkWord = wordsUser.find((w, i) => {
+        return w.wordId._id === wordGame.id;
+      });
+
+      if (checkWord) {
+        const param = {
+          count:
+            checkWord.optional.count === 5
+              ? checkWord.optional.count
+              : isRight
+              ? checkWord.optional.count + 1
+              : (checkWord.optional.count = 0),
+          correctly: isRight
+            ? checkWord.optional.correctly + 1
+            : checkWord.optional.correctly,
+          wrong: isRight
+            ? checkWord.optional.wrong
+            : checkWord.optional.wrong + 1
+        };
+        if (param.count === 5 && isRight) {
+          checkWord.difficulty = "easy";
+        }
+        if (param.count === 5 && !isRight) {
+          param.count = 0;
+          checkWord.difficulty = "midle";
+        }
+        await userServisece.updateWordUser(
+          wordGame.id,
+          checkWord.difficulty,
+          param
+        );
+        getAllWordsUser();
+      } else {
+        const param = {
+          count: isRight ? 1 : 0,
+          correctly: isRight ? 1 : 0,
+          wrong: isRight ? 0 : 1
+        };
+        userServisece.addWordUser(wordGame.id, "midle", param);
+        getAllWordsUser();
+      }
+    } catch (error) {
+      errorCatcher(error);
+    }
   }
+
   async function checkPageExplored(wordsPage, wordsUser) {
     const count = wordsPage.reduce((acc, w) => {
       wordsUser.forEach((wu) => {
         if (w.id === wu.wordId._id) {
-          return (acc += 1);
+          if (wu.difficulty === "easy" || wu.difficulty === "hard") {
+            return (acc += 1);
+          }
         }
       });
       return acc;
     }, 0);
     return count === 20 ? setPageExplored(true) : setPageExplored(false);
   }
+
+  function errorCatcher(error) {
+    const { statusText } = error.response;
+    setError(statusText);
+  }
+
   return (
     <WordContext.Provider
       value={{
+        group,
         isLoading,
         words,
         wordsUser,
@@ -109,7 +162,8 @@ const WordProvaider = ({ children }) => {
         isPageExplored,
         getWords,
         getAllWordsUser,
-        removeWordUser
+        removeWordUser,
+        gameResultsCheck
       }}
     >
       {children}

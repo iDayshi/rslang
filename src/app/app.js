@@ -17,31 +17,35 @@ import AboutTeam from "./components/page/dreamTeam";
 import StatisticPage from "./components/page/statisticPage";
 import DictionaryPage from "./components/page/dictionaryPage";
 import AudioCallProvaider from "./hooks/useAudioCall";
+import StatisticsProvaider from "./hooks/useStatistic";
 
 function App() {
   return (
     <>
       <AuthProvaider>
-        <AudioCallProvaider>
-          <NavBar />
-          <WordProvaider>
-            <SprintWordProvaider>
-              <Switch>
-                <Route path="/logout" component={LogOut} />
-                <Route path="/login/:type?" component={LoginPage} />
-                <Route path="/audiocall" component={AudioCallPage} />
-                <Route path="/sprint" component={SprintPage} />
-                <Route path="/statistic" component={StatisticPage} />
-                <Route path="/dictionary" component={DictionaryPage} />
-                <Route path="/about" component={AboutApp} />
-                <Route path="/dreamTeam" component={AboutTeam} />
-                <Route path="/" exact component={MainPage} />
-                <Redirect to="/" />
-              </Switch>
-            </SprintWordProvaider>
-          </WordProvaider>
-        </AudioCallProvaider>
+        <WordProvaider>
+          <StatisticsProvaider>
+            <AudioCallProvaider>
+              <NavBar />
+              <SprintWordProvaider>
+                <Switch>
+                  <Route path="/logout" component={LogOut} />
+                  <Route path="/login/:type?" component={LoginPage} />
+                  <Route path="/audiocall" component={AudioCallPage} />
+                  <Route path="/sprint" component={SprintPage} />
+                  <Route path="/statistic" component={StatisticPage} />
+                  <Route path="/dictionary" component={DictionaryPage} />
+                  <Route path="/about" component={AboutApp} />
+                  <Route path="/dreamTeam" component={AboutTeam} />
+                  <Route path="/" exact component={MainPage} />
+                  <Redirect to="/" />
+                </Switch>
+              </SprintWordProvaider>
+            </AudioCallProvaider>
+          </StatisticsProvaider>
+        </WordProvaider>
       </AuthProvaider>
+
       <ToastContainer />
     </>
   );

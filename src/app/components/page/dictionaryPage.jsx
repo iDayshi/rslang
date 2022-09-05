@@ -5,6 +5,7 @@ import PaginationComponent from "../common/pagination";
 import Footer from "../ui/footer";
 import CardWordList from "../ui/dictionary/wordCardsList";
 import { useAudioCall } from "../../hooks/useAudioCall";
+import ModalWindow from "../common/modalDictionary";
 
 const DictionaryPage = () => {
   const {
@@ -20,10 +21,8 @@ const DictionaryPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    if (!isLoading) {
-      setWordsGameDictionary(words);
-    }
-  }, [isLoading]);
+    setWordsGameDictionary(words);
+  }, [words]);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -36,10 +35,16 @@ const DictionaryPage = () => {
     groupIndex === 6 ? getAllWordsUser() : getWords(groupIndex, 0);
   };
 
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <>
       <div className="d-flex flex-column align-items-center justify-content-center m-3">
-        <h1 className="text-center mb-3">Учебник</h1>
+        <div className="top_line">
+          <h2 className="audio_call_name">Учебник</h2>
+          <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
+        </div>
+        <ModalWindow show={modalShow} onHide={() => setModalShow(false)} />
         <GroupWords onGroupChange={handleGroupChange} />
         {!isLoading && !isLoadingUserWords ? (
           <div className="row gutters-sm w-100">
@@ -57,12 +62,15 @@ const DictionaryPage = () => {
               </div>
             </div>
             {currentGroup !== 6 ? (
-              <PaginationComponent
-                currentPage={currentPage + 1}
-                setCurrentPage={setCurrentPage}
-                handlePageChange={handlePageChange}
-                alwaysShown={false}
-              />
+              <>
+                <PaginationComponent
+                  currentPage={currentPage + 1}
+                  setCurrentPage={setCurrentPage}
+                  handlePageChange={handlePageChange}
+                  alwaysShown={false}
+                />
+                <Footer />
+              </>
             ) : (
               ""
             )}
@@ -73,7 +81,6 @@ const DictionaryPage = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };

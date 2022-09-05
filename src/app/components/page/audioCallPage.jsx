@@ -81,8 +81,8 @@ const AudioCallPage = () => {
 
   const makeWords = () => {
     const quizWordsState = wordsGameDictionary.length
-      ? wordsGameDictionary.sort(() => Math.random() - 0.5).slice(0, 5)
-      : wordsGame.sort(() => Math.random() - 0.5).slice(0, 5);
+      ? [...wordsGameDictionary].sort(() => Math.random() - 0.5).slice(0, 5)
+      : [...wordsGame].sort(() => Math.random() - 0.5).slice(0, 5);
     const rightWordPosition = Math.floor(Math.random() * 5);
     setCorrectPosition(rightWordPosition);
     quizWordsState[rightWordPosition].right = true;

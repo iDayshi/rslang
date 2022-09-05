@@ -23,11 +23,11 @@ const NavProfole = () => {
       <div
         className={"w-100 text-black  dropdown-menu" + (isOpen ? " show" : "")}
       >
-        <Link to={`/users/${currentUser._id}`} className="dropdown-item">
-          Profile
+        <Link to={`/statistic`} className="dropdown-item">
+          Статистика
         </Link>
         <Link to={`/logout`} className="text-danger dropdown-item">
-          Exit
+          Выйти
         </Link>
       </div>
     </div>
