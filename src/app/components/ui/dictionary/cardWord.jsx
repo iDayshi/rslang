@@ -32,7 +32,7 @@ const CardWord = ({ word }) => {
       wordUser.difficulty === "hard"
         ? setDifficultWord(true)
         : setLearnedWord(wordUser.difficulty === "easy");
-      setStudyStatus(Math.round((wordUser.optional.count / 3) * 100));
+      setStudyStatus(Math.round((wordUser.optional.count / 5) * 100));
       setCorrectly(wordUser.optional.correctly);
       setWrong(wordUser.optional.wrong);
       setOptionalWord(wordUser.optional);

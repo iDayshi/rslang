@@ -55,16 +55,20 @@ const StatisticsProvaider = ({ children }) => {
   ) {
     try {
       const learnedWordsUser = wordsUser.filter((w) => {
-        return w.difficulty === "easy";
+        return w.difficulty === "midle";
       });
-      nameGame = "gamesAudioCall";
+
       const { content } = await statisticsServisece.updateStatisticsUser(
         learnedWordsUser.length,
         nameGame,
         learnedNewWordsGame,
-        seriesGame,
-        percentageGame,
-        gamesPlayedGame
+        seriesGame > statistics[nameGame].series
+          ? seriesGame
+          : statistics[nameGame].series,
+        statistics[nameGame].percentage === 0
+          ? percentageGame
+          : (statistics[nameGame].percentage + percentageGame) / 2,
+        (gamesPlayedGame = statistics[nameGame].gamesPlayed + 1)
       );
       setStatistics(content);
       setLoading(false);

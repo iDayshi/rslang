@@ -86,13 +86,14 @@ const WordProvaider = ({ children }) => {
 
   async function gameResultsCheck(wordGame, isRight) {
     try {
-      const checkWord = wordsUser.find((w) => {
+      const checkWord = wordsUser.find((w, i) => {
         return w.wordId._id === wordGame.id;
       });
+
       if (checkWord) {
         const param = {
           count:
-            checkWord.optional.count === 3
+            checkWord.optional.count === 5
               ? checkWord.optional.count
               : isRight
               ? checkWord.optional.count + 1
@@ -104,14 +105,19 @@ const WordProvaider = ({ children }) => {
             ? checkWord.optional.wrong
             : checkWord.optional.wrong + 1
         };
-        if (param.count === 3 && isRight) {
+        if (param.count === 5 && isRight) {
           checkWord.difficulty = "easy";
         }
-        if (param.count === 3 && !isRight) {
+        if (param.count === 5 && !isRight) {
           param.count = 0;
           checkWord.difficulty = "midle";
         }
-        userServisece.updateWordUser(wordGame.id, checkWord.difficulty, param);
+        await userServisece.updateWordUser(
+          wordGame.id,
+          checkWord.difficulty,
+          param
+        );
+        getAllWordsUser();
       } else {
         const param = {
           count: isRight ? 1 : 0,
@@ -119,6 +125,7 @@ const WordProvaider = ({ children }) => {
           wrong: isRight ? 0 : 1
         };
         userServisece.addWordUser(wordGame.id, "midle", param);
+        getAllWordsUser();
       }
     } catch (error) {
       errorCatcher(error);
@@ -140,9 +147,10 @@ const WordProvaider = ({ children }) => {
   }
 
   function errorCatcher(error) {
-    const { data } = error.response;
-    setError(data);
+    const { statusText } = error.response;
+    setError(statusText);
   }
+
   return (
     <WordContext.Provider
       value={{

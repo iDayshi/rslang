@@ -27,7 +27,9 @@ const NavBar = () => {
           >
             <span className="navbar-toggler-icon" onClick={toggleMenu}></span>
             <div
-              className={"w-50 dropdown-menu sandwich" + (isOpen ? " show" : "")}
+              className={
+                "w-50 dropdown-menu sandwich" + (isOpen ? " show" : "")
+              }
             >
               <Link
                 className="nav-link sandwich-el"
