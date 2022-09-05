@@ -1,0 +1,593 @@
+@import url("./app/styles/timer.css");
+@import url("./app//styles/sprintCard.css");
+
+@font-face {
+  font-family: SuperLiam;
+  src: url("../assets/SuperLiamSansExtremeRegular.otf");
+}
+
+@font-face {
+  font-family: Montserrat-Regular;
+  src: url("../assets/Montserrat-Regular.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.bi {
+  margin: 4px;
+  font-size: 16px;
+}
+
+.nav-link {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-item {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav_btn {
+  border: none;
+  color: #222222;
+  background-color: #eeeeeec5;
+
+  height: 40px;
+  width: 120px;
+  margin: 0;
+  padding: 5px;
+
+  font-family: Montserrat-Regular;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav_btn:hover {
+  color: #4a5039;
+  background-color: #b1be864b;
+}
+
+.sandwich {
+  font-family: Montserrat-Regular;
+  font-size: 16px;
+}
+
+.sandwich-el {
+  margin: 20px !important;
+}
+
+.aut-form {
+  background-image: url(../assets/form-bcg.jpeg);
+  background-size: cover;
+  font-family: Montserrat-Regular;
+}
+
+.dictionary-about {
+  background-image: url(../assets/about_book.png);
+  width: 400px;
+  height: 199px;
+  background-size: 400px;
+}
+
+.dictionary-description {
+  margin: 0;
+}
+
+/* _________ MAIN Page _________ */
+
+.main_wrapper {
+  background-image: url(../assets/book.jpg);
+  background-position: bottom;
+  background-size: cover;
+  height: calc(93vh - 64px);
+  display: flex;
+}
+
+.main_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 40%;
+}
+
+.logo {
+  font-family: SuperLiam;
+  font-size: 50px;
+  color: #fff;
+  margin: 15px 0px 0px 5px;
+  padding: 10px;
+}
+
+.promo {
+  font-family: Montserrat-Regular;
+  background-color: #22222250;
+  color: #fff;
+  width: 90%;
+  padding: 5px;
+  margin: 10px;
+}
+
+.main_button {
+  border-radius: 5px;
+  border: 0.5px solid #ffffff6b;
+  color: #313131;
+  background-color: #ffffffa8;
+  width: 290px;
+  height: 80px;
+  margin: 10px;
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.main_button:hover {
+  background-color: #e2f6d48c;
+  border: 0.5px solid #10552fd2;
+  padding-top: 3px;
+}
+
+.additional_button {
+  width: 135px;
+  height: 50px;
+  font-size: 16px;
+  letter-spacing: -0.03em;
+}
+
+/* _ _ _ footer _ _ _ */
+
+.footer_info_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6vh;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+}
+
+.git_person {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.RSS_logo {
+  background-image: url(../assets/RSSchool_logo.png);
+  background-size: 61px 23px;
+  display: block;
+  font-size: 0;
+  height: 23px;
+  width: 61px;
+  margin: 10px;
+}
+
+.github_name {
+  color: black;
+  text-decoration: none;
+}
+
+/* _________ AudioCall Page _________ */
+
+.audiocall_page {
+  border: 5px solid #c5c5c525;
+  background-image: url("../assets/audio_bcg.png");
+  background-size: contain;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top_line {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffffc4;
+  padding: 5px 15px;
+}
+
+.white_bcg {
+  border: 3px solid #c5c5c525;
+  background-color: #ffffffc4;
+  padding: 40px;
+  margin: 20px;
+}
+
+.audio_call_name {
+  font-family: SuperLiam;
+  margin: 0 10px 0 0;
+}
+
+.audiocall_header {
+  font-family: Montserrat-Regular;
+  margin-bottom: 40px;
+}
+
+.audiocall_header_small {
+  font-family: Montserrat-Regular;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.audiocall_correct_header {
+  font-family: Montserrat-Regular;
+  font-size: 30px;
+  color: #0a7424;
+  text-align: center;
+  margin: 10px;
+}
+
+.audiocall_wrong_header {
+  font-family: Montserrat-Regular;
+  font-size: 30px;
+  color: #a8120d;
+  text-align: center;
+  margin: 10px;
+}
+
+.audiocall_word_img {
+  border-radius: 0 45px;
+  height: 200px;
+  width: 300px;
+}
+
+.audiocall_wordcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.audiocoll_results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.word_number {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  color: #118a0d;
+}
+
+/* _ _ _ buttons _ _ _ */
+
+.audiocall_button {
+  border-radius: 0 30px;
+  border: none;
+  color: #ffffff;
+  background-color: #108a24;
+
+  height: 50px;
+  padding: 10px 30px;
+  margin: 10px;
+
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.audiocall_button:hover {
+  background-color: #0e741f;
+}
+
+.big_sound_button {
+  border-radius: 50%;
+  border: 6px solid #1055416b;
+  color: #0b4233;
+  background-color: #ffffff;
+
+  height: 180px;
+  width: 180px;
+  margin: 20px;
+
+  font-size: 48px;
+  text-decoration: none;
+}
+
+.big_sound_button:hover {
+  background-color: #e2f6d48c;
+  border: 6px solid #10552fd2;
+  padding: 35px;
+}
+
+.small_sound_button {
+  border-radius: 50%;
+  border: 3px solid #1055416b;
+  color: #0b4233;
+  background-color: #ffffff;
+
+  height: 60px;
+  width: 60px;
+  margin: 20px;
+
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.small_sound_button:hover {
+  background-color: #e2f6d48c;
+  border: 3px solid #10552fd2;
+  padding: 4px;
+}
+
+.audiocall_word_button {
+  border: none;
+  color: #222222;
+  background-color: #eeeeeec5;
+
+  height: 50px;
+  margin: 20px;
+  padding: 10px 30px;
+
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.audiocall_word_button:hover {
+  background-color: #9dd6978c;
+  padding-top: 13px;
+}
+
+.audio-info {
+  border: none;
+  background: rgba(255, 255, 255, 0);
+}
+
+.audio-info:hover {
+  color: #f76708;
+}
+
+/* _________ Team Page _________ */
+
+.team_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: calc(93vh - 64px);
+  background: #fad0c4;
+  background: linear-gradient(
+    to top,
+    rgba(250, 208, 196, 0.5),
+    rgba(255, 209, 255, 0.5)
+  );
+  font-family: Montserrat-Regular;
+}
+
+.teammate {
+  width: 30%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team_pic {
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+}
+
+.teammate_Name {
+  font-family: SuperLiam;
+  color: rgb(235, 11, 179);
+  font-size: 35px;
+}
+
+.unicorn1 {
+  width: 100px;
+  height: 100px;
+  background: url("../assets/uni1.gif");
+  background-size: 90px;
+}
+
+.unicorn2 {
+  width: 100px;
+  height: 100px;
+  background: url("../assets/uni2.gif");
+  background-size: 100px;
+}
+
+.unicorn3 {
+  width: 100px;
+  height: 100px;
+  background: url("../assets/uni3.gif");
+  background-size: 120px;
+}
+
+/* _________ About Page _________ */
+
+.about_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: calc(93vh - 64px);
+  font-family: Montserrat-Regular;
+  border: 5px solid #c5c5c525;
+  background-image: url("../assets/about_bcg.JPG");
+  background-size: contain;
+}
+
+.about-promo {
+  background-color: #eef5ee50;
+  color: rgb(59, 59, 59);
+  width: 90%;
+  padding: 5px;
+  margin: 10px;
+}
+
+.leaves {
+  background-image: url("../assets/leaves.png");
+  width: 200px;
+  height: 200px;
+  background-size: 200px;
+  margin-top: 40px;
+}
+
+.about-info {
+  margin-right: 1.5%;
+  margin-top: 20px;
+}
+
+.groups_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-wrapper {
+  margin: 0;
+  width: 100%;
+  padding: 0px 10px;
+}
+
+.article-wrapper {
+  border: 3px solid #c0c2c141;
+  color: #222222;
+  background-color: #ffffff46;
+
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.about_info_btn {
+  border-radius: 15px;
+  border: 3px solid #53665a17;
+  color: #222222;
+  background-color: #b4b4b446;
+
+  width: 25%;
+  margin: 5px 10px;
+  padding: 5px;
+
+  font-size: 14px;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.about_info_btn:hover {
+  background-color: #83968081;
+}
+
+
+
+/* _________ MEDIA _________ */
+
+@media (min-width: 769px) and (max-width: 1000px) {
+  .audiocall_word_button {
+    font-size: 12px;
+    margin: 12px;
+    padding: 5px 15px;
+  }
+
+  .main_info {
+    width: 40%;
+  }
+
+  .navigation {
+    padding: 15px;
+    width: 60%;
+  }
+
+  .info-wrapper {
+    display: none;
+  }
+
+  .groups_wrapper {
+    flex-wrap: wrap;
+  }
+
+  .about_info_btn {
+    width: 45%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .nav_element_text {
+    display: none;
+  }
+  .nav_btn {
+    width: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .audiocall_word_button {
+    font-size: 14px;
+    margin: 10px;
+    padding: 5px 15px;
+  }
+
+  .audio_game_words {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main_wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .main_info {
+    width: 100%;
+  }
+
+  .navigation {
+    padding: 0;
+    width: 100%;
+  }
+
+  .main_button {
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .footer_info_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-wrapper {
+    display: none;
+  }
+
+  .groups_wrapper {
+    flex-wrap: wrap;
+  }
+
+  .about_info_btn {
+    width: 90%;
+  }
+}
