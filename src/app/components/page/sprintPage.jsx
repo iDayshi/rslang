@@ -26,48 +26,50 @@ const SprintPage = () => {
   };
 
   return (
-    <div className="container sprint_page">
-      <div className="top_line">
-        <h2 className="audio_call_name">Sprint-Game</h2>
-        <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
+    <div className="container sprint-page">
+      <ModalWindow show={modalShow} onHide={() => setModalShow(false)} />
+      <div className="sprint-header">
+        <h2 className=".sprint-header-title">Sprint-Game</h2>
+        <button className="audio-info" onClick={() => setModalShow(true)}>
+          <i className="bi bi-info-circle"></i>
+        </button>
       </div>
-      <section className="text-center white_bcg">
-      <Disable disabled={levelChoosed}>
-        <SprintGroupButtons onGroupChange={handleGroupChange} />
-      </Disable>
-      <div className="row gutters-sm w-100">
-        <ModalWindow show={modalShow} onHide={() => setModalShow(false)} />
-        <div className="container ">
-          {levelChoosed ? (
-            <div className="card-deck row justify-content-center">
-              <SprintCardWord selectWords={allGroupWords.flat()} />
-            </div>
-          ) : (
-            <h4 className="sprint_header">
-              Please choose your level from above
-            </h4>
-          )}
+      <div className="main-container d-flex flex-column align-items-center justify-content-center m-5">
+        <Disable disabled={levelChoosed}>
+          <SprintGroupButtons onGroupChange={handleGroupChange} />
+        </Disable>
+        <div className="row gutters-sm w-100">
+          <div className="container ">
+            {levelChoosed ? (
+              <div className="card-deck row justify-content-center">
+                <SprintCardWord selectWords={allGroupWords.flat()} />
+              </div>
+            ) : (
+              <h2 className="text-center level-title">
+                Please choose your level
+              </h2>
+            )}
+          </div>
         </div>
-      </div>
-      {levelChoosed ? (
-        <div className="sprint-buttons">
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-lg"
-            onClick={() => setLevelChoosed(false)}
-          >
-            Reset
-          </button>
-          <Link className="nav-link" aria-current="page" to="/">
-            <button className="btn btn-outline-info btn-lg ms-3">
-              Back to Main
+        {levelChoosed ? (
+          <div className="footer-buttons d-flex m-3">
+            <button
+              type="button"
+              className="btn btn-outline-danger btn-lg"
+              onClick={() => setLevelChoosed(false)}
+            >
+              Reset
             </button>
-          </Link>
-        </div>
-      ) : (
-        <></>
-      )}
-      </section>
+            <Link className="nav-link" aria-current="page" to="/">
+              <button className="btn btn-outline-info btn-lg ms-3">
+                Back to Main
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 };

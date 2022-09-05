@@ -136,13 +136,16 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", getKeyDown, true);
-  }, []);
+    document.addEventListener("keypress", getKeyDown, true);
+    return () => {
+      document.removeEventListener("keypress", getKeyDown, true);
+    };
+  }, [cardIndex]);
 
   const getKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
+    if (e.key === "w" || e.key === "W") {
       wrongButtonAction();
-    } else if (e.key === "ArrowRight") {
+    } else if (e.key === "r" || e.key === "R") {
       rightButtonAction();
     }
   };
@@ -153,22 +156,15 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
         {!countdown ? (
           <SprintCountdown />
         ) : !finished ? (
-          <div className="main-card">
-            <div className="sprint-card">
-              <div className="sprint-card-score">
-                <div className="sprint-score">
-                  <h4>Total Score: {score} </h4>
-                </div>
-                <div className="sprint-score-coeff">
-                  <p className="bi"> (Score Coefficient x {scoreCoeff})</p>
-                </div>
+          <div className="main-card col-xs-12 col-sm-6 col-md-4 w-100">
+            <SprintTimer />
+            <div className="card">
+              <div className="sprint-score-coeff d-flex justify-content-center align-items-center">
+                <h5>Score Coefficient x {scoreCoeff}</h5>
               </div>
-
-              <section className="sprint-question">
-
-              <SprintTimer />
-
-              <div className="sprint-question-right">
+              <div className="sprint-score d-flex justify-content-center align-items-center">
+                <h3>Total Score: {score}</h3>
+              </div>
 
                 <div className="card-body container">
                   <div className="words-underline row">
@@ -218,6 +214,11 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                     </button>
                   </div>
                 </div>
+                <div className="keboard-button-group row">
+                  <h5 className="col-2 text-center">or press W</h5>
+                  <i className="bi bi-grip-vertical col-2 text-center"></i>
+                  <h5 className="col-2 text-center">or press R</h5>
+                </div>
               </div>
               </section>
             </div>
@@ -228,15 +229,15 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
       </div>
       {finished ? (
         <div className="card-container d-flex flex-column justify-content-around align-items-center">
-          <div className="sprint-result">
+          <div className="card col-xs-12 col-sm-6 col-md-4 w-100">
             <h1>
               Your score: {score} - {getResultPhrase()}
             </h1>
-            <div>
+            <h5>
               During the attempt, {allAnswers} words were compared.{" "}
               {allRigthAnswers} words were answered correctly, which is{" "}
-              {Math.floor((100 * allRigthAnswers) / allAnswers)} %
-            </div>
+              {Math.floor((100 * allRigthAnswers) / allAnswers) || 0} %
+            </h5>
             <div className="answers-result d-flex">
               <div className="rigth-answers answers-list">
                 <h3>Right answers:</h3>
