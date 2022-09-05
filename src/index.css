@@ -490,7 +490,7 @@ code {
 
 .statistic_page {
   border: 5px solid #c5c5c525;
-  background-image: url(http://localhost:3000/static/media/audio_bcg.9a08e5f9dc129c010bec.png);
+  background-image: url(https://rslang-idayshi.herokuapp.com/static/media/audio_bcg.9a08e5f9dc129c010bec.png);
   background-size: contain;
   display: flex;
   align-items: center;
