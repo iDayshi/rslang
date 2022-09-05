@@ -140,7 +140,6 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
   }, []);
 
   const getKeyDown = (e) => {
-    console.log("Clicked: ", e.key);
     if (e.key === "ArrowLeft") {
       wrongButtonAction();
     } else if (e.key === "ArrowRight") {
@@ -244,6 +243,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 {rigthAnswers.map((item) => {
                   return (
                     <div key={item.id}>
+
                     <button
                       onClick={() => {
                         const playWord = new Audio(
@@ -271,6 +271,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 {wrongAnswers.map((item) => {
                   return (
                     <div key={item.id}>
+
                     <button
                       onClick={() => {
                         const playWord = new Audio(

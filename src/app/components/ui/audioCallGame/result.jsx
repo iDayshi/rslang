@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useStatistic } from "../../../hooks/useStatistic";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Result = ({ correctAnswers, wrongAnswers, newGame, series }) => {
   const { updateStatistics } = useStatistic();
+  const { currentUser } = useAuth();
   const percentage = Math.floor((100 * correctAnswers.length) / 10);
   useEffect(() => {
-    updateStatistics("gamesAudioCall", 0, series, percentage);
+    if (currentUser) {
+      updateStatistics("gamesAudioCall", 0, series, percentage);
+    }
   }, [correctAnswers]);
 
   return (

@@ -6,8 +6,8 @@ const CardWordList = ({ selectWords }) => {
   if (!selectWords.length) {
     return (
       <>
-        <h1 className="container text-center">
-          У вас пока нет добавленых слов
+        <h1 className="container text-center white_bcg">
+          У вас пока нет добавленых сложных слов
         </h1>
       </>
     );

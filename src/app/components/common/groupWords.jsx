@@ -28,7 +28,7 @@ const GroupWords = ({ onGroupChange }) => {
             <button
               key={nanoid(5)}
               type="button"
-              className={`btn ${button} ms-3`}
+              className={`btn ${button} ms-3 `}
               onClick={() => onGroupChange(index)}
             >
               {index + 1}
@@ -76,6 +76,7 @@ const GroupWords = ({ onGroupChange }) => {
 };
 
 GroupWords.propTypes = {
-  onGroupChange: PropTypes.func.isRequired
+  onGroupChange: PropTypes.func.isRequired,
+  currentGroup: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 export default GroupWords;

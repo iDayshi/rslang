@@ -7,7 +7,7 @@ import userServisece from "../../../services/user.service";
 
 const CardWord = ({ word }) => {
   const { currentUser } = useAuth();
-  const { wordsUser, removeWordUser, isLoading } = useWord();
+  const { wordsUser, removeWordUser, addWordUser, isLoading } = useWord();
   const [wordsCurrentUser, setWordsCurrentUser] = useState(wordsUser);
   const [difficultWord, setDifficultWord] = useState(false);
   const [learnedWord, setLearnedWord] = useState(false);
@@ -47,26 +47,33 @@ const CardWord = ({ word }) => {
         wrong: 0
       };
     }
+    console.log(wordsUser);
+    const checkWord = !!wordsCurrentUser.find((w) => w.wordId._id === wordId);
+    console.log(wordId);
+
     if (type === "hard") {
       setDifficultWord(true);
       setStudyStatus(0);
-      if (learnedWord) {
+      optionalParam.count = 0;
+      console.log(learnedWord && checkWord);
+      if (checkWord) {
         setLearnedWord(false);
-        optionalParam.count = 0;
+        console.log(optionalParam);
         userServisece.updateWordUser(wordId, "hard", optionalParam);
       } else {
-        userServisece.addWordUser(wordId, "hard", optionalParam);
+        addWordUser(wordId, "hard", optionalParam);
       }
     }
     if (type === "easy") {
       setLearnedWord(true);
       setStudyStatus(100);
-      if (difficultWord) {
+      optionalParam.count = 5;
+      console.log(difficultWord, checkWord);
+      if (checkWord) {
         setDifficultWord(false);
-        optionalParam.count = 3;
         userServisece.updateWordUser(wordId, "easy", optionalParam);
       } else {
-        userServisece.addWordUser(wordId, "easy", optionalParam);
+        addWordUser(wordId, "easy", optionalParam);
       }
     }
   };

@@ -10,16 +10,10 @@ export const useSprintWord = () => {
 };
 
 const SprintWordProvaider = ({ children }) => {
-  const [words, setWords] = useState([]);
   const [allGroupWords, setAllGroupWords] = useState([]);
   const [group, setGroup] = useState(0);
-  const [page, setPage] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    getWords();
-  }, []);
 
   useEffect(() => {
     if (error !== null) {
@@ -27,27 +21,6 @@ const SprintWordProvaider = ({ children }) => {
       setError(null);
     }
   }, [error]);
-
-  function getWordsById(wordsId) {
-    return words.find((u) => u._id === wordsId);
-  }
-
-  async function getWords(groupSelect, pageSelect) {
-    if (!isLoading) {
-      setGroup(groupSelect);
-      setPage(pageSelect);
-    }
-    try {
-      const { content } = await wordServisece.get(
-        groupSelect || group,
-        pageSelect || page
-      );
-      setWords(content);
-      setLoading(false);
-    } catch {
-      errorCatcher(error);
-    }
-  }
 
   async function getAllGroupWords(groupSelect) {
     if (!isLoading) {
@@ -70,20 +43,18 @@ const SprintWordProvaider = ({ children }) => {
           setLoading(false);
         }
         pageIndex += 1;
-      } catch {
+      } catch (error) {
         errorCatcher(error);
       }
     }
   }
 
   function errorCatcher(error) {
-    const { message } = error.response.data;
+    const { message } = error.response;
     setError(message);
   }
   return (
-    <SprintWordContext.Provider
-      value={{ words, allGroupWords, getWordsById, getWords, getAllGroupWords }}
-    >
+    <SprintWordContext.Provider value={{ allGroupWords, getAllGroupWords }}>
       {children}
     </SprintWordContext.Provider>
   );
