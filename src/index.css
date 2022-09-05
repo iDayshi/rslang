@@ -76,6 +76,17 @@ code {
   font-family: Montserrat-Regular;
 } 
 
+.dictionary-about {
+  background-image: url(../assets/about_book.png);
+  width: 400px;
+  height: 199px;
+  background-size: 400px;
+}
+
+.dictionary-description {
+  margin: 0;
+}
+
 /* _________ MAIN Page _________ */
 
 .main_wrapper {
