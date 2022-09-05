@@ -70,6 +70,12 @@ code {
   margin: 20px !important;
 }
 
+.aut-form {
+  background-image: url(../assets/form-bcg.jpeg);
+  background-size: cover;
+  font-family: Montserrat-Regular;
+} 
+
 /* _________ MAIN Page _________ */
 
 .main_wrapper {

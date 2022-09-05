@@ -18,7 +18,7 @@ const LoginPage = () => {
   return (
     <div className="container mt-5 ">
       <div className="row">
-        <div className="col-md-6 shadow p-4 bg-light bg-gradient rounded-3">
+        <div className="aut-form col-md-6 shadow p-4 bg-light rounded-3">
           {formType === "register" ? (
             <>
               <h3 className="mb-4">Регистрация</h3>
