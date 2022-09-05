@@ -25,26 +25,22 @@ const userServisece = {
     );
     return data;
   },
-  addWordUser: async (wordId, type) => {
+  addWordUser: async (wordId, type, optionalParams) => {
     const { data } = await httpServise.post(
       userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
       {
         difficulty: type,
-        optional: {
-          count: 0
-        }
+        optional: optionalParams
       }
     );
     return data;
   },
-  updateWordUser: async (wordId, type) => {
+  updateWordUser: async (wordId, type, optionalParams) => {
     const { data } = await httpServise.put(
       userEndpoint + localStorageService.getUserId() + `/words/${wordId}`,
       {
         difficulty: type,
-        optional: {
-          count: 0
-        }
+        optional: optionalParams
       }
     );
     return data;

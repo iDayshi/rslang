@@ -113,7 +113,7 @@ const RegisterForm = () => {
       <button
         type="submit"
         disabled={!isValid}
-        className="btn btn-primary w-100 mx-auto"
+        className="btn btn-success w-100 mx-auto"
       >
         Зарегистрироваться
       </button>

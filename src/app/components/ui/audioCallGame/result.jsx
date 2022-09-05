@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useStatistic } from "../../../hooks/useStatistic";
 
 const Result = ({ correctAnswers, wrongAnswers, newGame, series }) => {
+  const { updateStatistics } = useStatistic();
+  const percentage = Math.floor((100 * correctAnswers.length) / 10);
+  useEffect(() => {
+    updateStatistics("gamesAudioCall", 0, series, percentage);
+  }, [correctAnswers]);
+
   return (
     <div className="container">
       <div className="top_line">
@@ -10,8 +17,8 @@ const Result = ({ correctAnswers, wrongAnswers, newGame, series }) => {
       <section className="audiocoll_results">
         <h3 className="audiocall_header"> Результаты игры </h3>
         <div>
-          {Math.floor((100 * correctAnswers.length) / 10)} % правильных ответов.{" "}
-          {correctAnswers.length} из 10 слов верны
+          {percentage} % правильных ответов. {correctAnswers.length} из 10 слов
+          верны
         </div>
         <div>{series + " правильных ответов подряд"}</div>
         <div>

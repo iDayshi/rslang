@@ -70,6 +70,12 @@ code {
   margin: 20px !important;
 }
 
+.aut-form {
+  background-image: url(../assets/form-bcg.jpeg);
+  background-size: cover;
+  font-family: Montserrat-Regular;
+} 
+
 /* _________ MAIN Page _________ */
 
 .main_wrapper {
@@ -346,6 +352,117 @@ code {
 
 .audio-info:hover {
   color:#f76708
+}
+
+/* _________ Sprint Page _________ */
+
+.sprint_page {
+  border: 5px solid #c5c5c525;
+  background-image: url("../assets/sprint-bcg.jpeg");
+  background-size: contain;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sprint_header {
+  font-family: Montserrat-Regular;
+  margin: 40px;
+}
+
+.sprint-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-card {
+  display: flex;
+}
+
+.sprint-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.sprint-card-score {
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.sprint-question {
+  display: flex;
+}
+
+.sprint-question-right {
+  min-width: 500px;
+  border: 5px solid #c5c5c525;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.sprint-wrong-btn {
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #c91717c5;
+
+  height: 40px;
+  width: 160px !important;
+
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.sprint-wrong-btn:hover {
+  background-color: #ff0000c5;
+}
+
+.sprint-right-btn {
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #0fa30ac5;
+
+  height: 40px;
+  width: 160px !important;
+
+  font-family: Montserrat-Regular;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.sprint-right-btn:hover {
+  background-color: #14bb0ec5;
+}
+
+.words-translation {
+  font-family: Montserrat-Regular;
+  font-size: 24px;
+}
+
+.sprint-result {
+  display: flex;
+  flex-direction: column;
+}
+
+.answers-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: Montserrat-Regular;
 }
 
 /* _________ Team Page _________ */

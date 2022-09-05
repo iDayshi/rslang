@@ -88,7 +88,7 @@ const LoginForm = () => {
       <button
         type="submit"
         disabled={!isValid || enterError}
-        className="btn btn-primary w-100 mx-auto"
+        className="btn btn-success w-100 mx-auto"
       >
         Войти
       </button>

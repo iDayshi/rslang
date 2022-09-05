@@ -10,7 +10,14 @@ const statisticsServisece = {
     );
     return data;
   },
-  updateStatisticsUser: async () => {
+  updateStatisticsUser: async (
+    learnedWordsUser,
+    nameGame,
+    learnedNewWordsGame,
+    seriesGame,
+    percentageGame,
+    gamesPlayedGame
+  ) => {
     if (localStorageService.getUserId()) {
       const { data } = await httpServise.put(
         userStatisticsEndpoint +
@@ -18,12 +25,12 @@ const statisticsServisece = {
           `/statistics`,
         {
           userId: localStorageService.getUserId(),
-          learnedWords: 0,
-          gamesAudioCall: {
-            learnedWords: 3
-          },
-          gamesSprint: {
-            learnedWords: 5
+          learnedWords: learnedWordsUser || 0,
+          [nameGame]: {
+            learnedNewWords: learnedNewWordsGame || 0,
+            series: seriesGame || 0,
+            percentage: percentageGame || 0,
+            gamesPlayed: gamesPlayedGame || 0
           }
         },
         {
@@ -31,7 +38,7 @@ const statisticsServisece = {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+            Authorization: `Bearer ${localStorageService.getAccessToken()}`
           }
         }
       );

@@ -20,10 +20,8 @@ const DictionaryPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    if (!isLoading) {
-      setWordsGameDictionary(words);
-    }
-  }, [isLoading]);
+    setWordsGameDictionary(words);
+  }, [words]);
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -57,12 +55,15 @@ const DictionaryPage = () => {
               </div>
             </div>
             {currentGroup !== 6 ? (
-              <PaginationComponent
-                currentPage={currentPage + 1}
-                setCurrentPage={setCurrentPage}
-                handlePageChange={handlePageChange}
-                alwaysShown={false}
-              />
+              <>
+                <PaginationComponent
+                  currentPage={currentPage + 1}
+                  setCurrentPage={setCurrentPage}
+                  handlePageChange={handlePageChange}
+                  alwaysShown={false}
+                />
+                <Footer />
+              </>
             ) : (
               ""
             )}
@@ -73,7 +74,6 @@ const DictionaryPage = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };
