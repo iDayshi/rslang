@@ -244,6 +244,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 {rigthAnswers.map((item) => {
                   return (
                     <div key={item.id}>
+
                     <button
                       onClick={() => {
                         const playWord = new Audio(
@@ -271,6 +272,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 {wrongAnswers.map((item) => {
                   return (
                     <div key={item.id}>
+
                     <button
                       onClick={() => {
                         const playWord = new Audio(

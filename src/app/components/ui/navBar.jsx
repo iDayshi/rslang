@@ -24,13 +24,10 @@ const NavBar = () => {
             type="button"
             data-toggle="collapse"
             data-target="#navbar1"
+            onClick={toggleMenu}
           >
-            <span className="navbar-toggler-icon" onClick={toggleMenu}></span>
-            <div
-              className={
-                "w-50 dropdown-menu sandwich" + (isOpen ? " show" : "")
-              }
-            >
+            <span className="navbar-toggler-icon"></span>
+            <div className={"dropdown-menu sandwich" + (isOpen ? " show" : "")}>
               <Link
                 className="nav-link sandwich-el"
                 aria-current="page"

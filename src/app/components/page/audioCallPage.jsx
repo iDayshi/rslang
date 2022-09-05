@@ -19,10 +19,25 @@ const AudioCallPage = () => {
   const [series, setSeries] = useState(0);
   const [strick, setStrick] = useState(0);
   const [wordCounter, setWordCounter] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [isPlayGame, setPlayGame] = useState(false);
   const [view, setView] = useState("game");
+
+  useEffect(() => {
+    wordsGameDictionary.length
+      ? setWordsGameDictionary((prevState) =>
+          prevState.filter((w) => {
+            return w.id !== correctAnswer.id;
+          })
+        )
+      : setWordsGame((prevState) =>
+          prevState.filter((w) => {
+            return w.id !== correctAnswer.id;
+          })
+        );
+  }, [correctAnswer]);
 
   useEffect(() => {
     if (nextRound && wordCounter < 10) {
@@ -85,6 +100,7 @@ const AudioCallPage = () => {
       : [...wordsGame].sort(() => Math.random() - 0.5).slice(0, 5);
     const rightWordPosition = Math.floor(Math.random() * 5);
     setCorrectPosition(rightWordPosition);
+    setCorrectAnswer(quizWordsState[rightWordPosition]);
     quizWordsState[rightWordPosition].right = true;
     setQuizWords(quizWordsState);
     const playWord = new Audio(

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useAuth } from "./useAuth";
-import statisticsServisece from "../services/statistic.service";
+import statisticsService from "../services/statistic.service";
 import { useWord } from "./useWords";
 
 const StatisticsContext = React.createContext();
@@ -24,7 +24,7 @@ const StatisticsProvaider = ({ children }) => {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     if (error !== null) {
@@ -35,13 +35,10 @@ const StatisticsProvaider = ({ children }) => {
 
   async function getStatistics() {
     try {
-      const { content } = await statisticsServisece.get();
+      const { content } = await statisticsService.get();
       setStatistics(content);
       setLoading(false);
     } catch (error) {
-      if (error.response.status === 404) {
-        await statisticsServisece.updateStatisticsUser();
-      }
       errorCatcher(error);
     }
   }
@@ -58,7 +55,7 @@ const StatisticsProvaider = ({ children }) => {
         return w.difficulty === "midle";
       });
 
-      const { content } = await statisticsServisece.updateStatisticsUser(
+      const { content } = await statisticsService.updateStatisticsUser(
         learnedWordsUser.length,
         nameGame,
         learnedNewWordsGame,

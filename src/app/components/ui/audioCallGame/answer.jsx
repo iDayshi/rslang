@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useWord } from "../../../hooks/useWords";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Answer = ({ isRight, correctAnswer, onNextQuestion }) => {
   const { gameResultsCheck } = useWord();
+  const { currentUser } = useAuth();
   delete correctAnswer.right;
 
   useEffect(() => {
-    if (correctAnswer) {
+    if (correctAnswer && currentUser) {
       gameResultsCheck(correctAnswer, isRight);
     }
   }, []);
@@ -19,7 +21,7 @@ const Answer = ({ isRight, correctAnswer, onNextQuestion }) => {
           isRight ? "audiocall_correct_header" : "audiocall_wrong_header"
         }
       >
-         {isRight ? "🌈 Правильно!" : " ☁️ Неверно"}
+        {isRight ? "🌈 Правильно!" : " ☁️ Неверно"}
       </h3>
       <section>
         <div className="audiocall_wordcard">
