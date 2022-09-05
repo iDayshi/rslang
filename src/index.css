@@ -48,7 +48,7 @@ code {
   height: 40px;
   width: 120px;
   margin: 0;
-  padding: 5px ;
+  padding: 5px;
 
   font-family: Montserrat-Regular;
   font-size: 14px;
@@ -136,7 +136,7 @@ code {
   width: 135px;
   height: 50px;
   font-size: 16px;
-  letter-spacing: -.03em;
+  letter-spacing: -0.03em;
 }
 
 /* _ _ _ footer _ _ _ */
@@ -254,7 +254,7 @@ code {
 .word_number {
   font-size: 15px;
   font-weight: bold;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   color: #118a0d;
 }
 
@@ -345,7 +345,7 @@ code {
 }
 
 .audio-info:hover {
-  color:#f76708
+  color: #f76708;
 }
 
 /* _________ Team Page _________ */
@@ -380,7 +380,7 @@ code {
 
 .teammate_Name {
   font-family: SuperLiam;
-  color:rgb(235, 11, 179);
+  color: rgb(235, 11, 179);
   font-size: 35px;
 }
 
@@ -440,7 +440,7 @@ code {
 }
 
 .groups_wrapper {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
 
@@ -554,7 +554,7 @@ code {
     height: 60px;
     margin-bottom: 10px;
   }
-  
+
   .footer_info_wrapper {
     display: flex;
     flex-direction: column;

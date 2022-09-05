@@ -6,6 +6,37 @@ i {
   font-size: 2rem;
 }
 
+.main-container {
+  width: 60%;
+}
+
+.sprint-page {
+  border: 5px solid #c5c5c525;
+  background-image: url("../../../assets/sprint-bg.jpg");
+  background-size: contain;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sprint-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffffc4;
+  padding: 5px 15px;
+}
+
+.sprint-header-title {
+  font-family: SuperLiam;
+  margin: 0 10px 0 0;
+}
+
 .bi-question-circle-fill {
   flex-grow: auto;
   font-size: 2rem;
@@ -15,12 +46,14 @@ i {
   font-size: 2rem;
 }
 
-.bi-check-circle-fill {
+.bi-check-circle-fill,
+bi-r-square-fill {
   font-size: 2rem;
   color: green;
 }
 
-.bi-emoji-frown-fill {
+.bi-emoji-frown-fill,
+.bi-w-square-fill {
   font-size: 2rem;
   color: red;
 }
@@ -35,6 +68,11 @@ i {
 
 .card {
   padding: 1rem;
+  --bs-bg-opacity: 0.1;
+  background-color: rgba(
+    var(--bs-success-rgb),
+    var(--bs-bg-opacity)
+  ) !important;
 }
 
 .card-body > div {

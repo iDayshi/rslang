@@ -136,14 +136,16 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", getKeyDown, true);
-  }, []);
+    document.addEventListener("keypress", getKeyDown, true);
+    return () => {
+      document.removeEventListener("keypress", getKeyDown, true);
+    };
+  }, [cardIndex]);
 
   const getKeyDown = (e) => {
-    console.log("Clicked: ", e.key);
-    if (e.key === "ArrowLeft") {
+    if (e.key === "w" || e.key === "W") {
       wrongButtonAction();
-    } else if (e.key === "ArrowRight") {
+    } else if (e.key === "r" || e.key === "R") {
       rightButtonAction();
     }
   };
@@ -154,7 +156,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
         {!countdown ? (
           <SprintCountdown />
         ) : !finished ? (
-          <div className="main-card col-xs-12 col-sm-6 col-md-4 w-50">
+          <div className="main-card col-xs-12 col-sm-6 col-md-4 w-100">
             <SprintTimer />
             <div className="card">
               <div className="sprint-score-coeff d-flex justify-content-center align-items-center">
@@ -178,7 +180,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 </div>
 
                 <div className="check-mark row my-auto">
-                  <i className={statusIcon}></i>
+                  <i className={"status-icon " + statusIcon}></i>
                 </div>
 
                 <div className="words-translation row">
@@ -211,6 +213,11 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                     Right
                   </button>
                 </div>
+                {/* <div className="keboard-button-group row">
+                  <i className="bi bi-w-square-fill col-2 text-center"></i>
+                  <i className="bi bi-grip-vertical col-2 text-center"></i>
+                  <i className="bi bi-r-square-fill  col-2 text-center"></i>
+                </div> */}
               </div>
             </div>
           </div>
@@ -220,15 +227,15 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
       </div>
       {finished ? (
         <div className="card-container d-flex flex-column justify-content-around align-items-center">
-          <div className="main-card col-xs-12 col-sm-6 col-md-4 w-50">
+          <div className="card col-xs-12 col-sm-6 col-md-4 w-100">
             <h1>
               Your score: {score} - {getResultPhrase()}
             </h1>
-            <div>
+            <h5>
               During the attempt, {allAnswers} words were compared.{" "}
               {allRigthAnswers} words were answered correctly, which is{" "}
-              {Math.floor((100 * allRigthAnswers) / allAnswers)} %
-            </div>
+              {Math.floor((100 * allRigthAnswers) / allAnswers) || 0} %
+            </h5>
             <div className="answers-result d-flex">
               <div className="rigth-answers">
                 <h3>Right answers:</h3>
