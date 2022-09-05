@@ -22,6 +22,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
   const [finished, setFinished] = useState(false);
   const [rigthAnswers, setRigthAnswers] = useState([]);
   const [wrongAnswers, setWrongAnswers] = useState([]);
+  const [attempts, setAttempts] = useState(5);
 
   const resultPhrases = ["Keep going!", "Not Bad!!", "Awesome!!!"]; // set final result phrase
   const getResultPhrase = () => {
@@ -100,6 +101,10 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
           translate: selectWords[cardIndex].wordTranslate
         }
       ]);
+      setAttempts(attempts - 1);
+      if (attempts === 0) {
+        setFinished(true);
+      }
     }
     commonButtonAction();
   };
@@ -131,6 +136,10 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
           translate: selectWords[cardIndex].wordTranslate
         }
       ]);
+      setAttempts(attempts - 1);
+      if (attempts === 0) {
+        setFinished(true);
+      }
     }
     commonButtonAction();
   };
@@ -161,6 +170,9 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
             <div className="card">
               <div className="sprint-score-coeff d-flex justify-content-center align-items-center">
                 <h5>Score Coefficient x {scoreCoeff}</h5>
+              </div>
+              <div className="sprint-score d-flex justify-content-center align-items-center">
+                <h3>Attempts left: {attempts}</h3>
               </div>
               <div className="sprint-score d-flex justify-content-center align-items-center">
                 <h3>Total Score: {score}</h3>
