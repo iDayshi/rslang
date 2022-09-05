@@ -55,12 +55,15 @@ const DictionaryPage = () => {
               </div>
             </div>
             {currentGroup !== 6 ? (
-              <PaginationComponent
-                currentPage={currentPage + 1}
-                setCurrentPage={setCurrentPage}
-                handlePageChange={handlePageChange}
-                alwaysShown={false}
-              />
+              <>
+                <PaginationComponent
+                  currentPage={currentPage + 1}
+                  setCurrentPage={setCurrentPage}
+                  handlePageChange={handlePageChange}
+                  alwaysShown={false}
+                />
+                <Footer />
+              </>
             ) : (
               ""
             )}
@@ -71,7 +74,6 @@ const DictionaryPage = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };

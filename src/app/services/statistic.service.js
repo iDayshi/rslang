@@ -38,7 +38,7 @@ const statisticsServisece = {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorageService.getRefreshToken()}`
+            Authorization: `Bearer ${localStorageService.getAccessToken()}`
           }
         }
       );
