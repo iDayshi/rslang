@@ -36,7 +36,7 @@ const GroupWords = ({ onGroupChange }) => {
           );
         } else if (
           currentUser &&
-          location !== "http://localhost:3000/audiocall"
+          location !== "https://rslang-idayshi.herokuapp.com/audiocall"
         ) {
           return (
             <div key={nanoid(5)}>
