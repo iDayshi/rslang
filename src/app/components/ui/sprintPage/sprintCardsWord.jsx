@@ -39,7 +39,7 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
     }, 3500);
     setTimeout(() => {
       setFinished(true); // hide main card and show result
-      setCountdown(true); //
+      setCountdown(true);
     }, 63500);
   })();
 
