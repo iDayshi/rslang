@@ -165,58 +165,60 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
               </div>
 
               <section className="sprint-question">
-                <SprintTimer />
 
-                <div className="sprint-question-right">
-                  <div className="card-body container">
-                    <div className="words-underline row">
-                      <div className="card-title-top col-5 text-end my-auto">
-                        <span>word</span>
-                      </div>
+              <SprintTimer />
 
-                      <i className="bi bi-arrow-down-circle-fill col-2 text-center my-auto"></i>
+              <div className="sprint-question-right">
 
-                      <div className="card-title-top col-5 text-start my-auto">
-                        <span>translation</span>
-                      </div>
+                <div className="card-body container">
+                  <div className="words-underline row">
+                    <div className="card-title-top col-5 text-end my-auto">
+                      <span>word</span>
                     </div>
 
-                    <div className="check-mark row my-auto">
-                      <i className={statusIcon}></i>
-                    </div>
+                    <i className="bi bi-arrow-down-circle-fill col-2 text-center my-auto"></i>
 
-                    <div className="words-translation row">
-                      <div className="card-title col-5 text-end my-auto">
-                        <h3>{selectWords[cardIndex].word}</h3>
-                      </div>
-
-                      <i className="bi bi-arrow-up-circle-fill text-center col-2"></i>
-
-                      <div className="card-title col-5 text-start my-auto">
-                        <h3>{selectWords[translationIndex].wordTranslate}</h3>
-                      </div>
-                    </div>
-
-                    <hr />
-                    <div className="button-group row">
-                      <button
-                        type="button"
-                        className="sprint-wrong-btn"
-                        onClick={() => wrongButtonAction()}
-                      >
-                        Wrong
-                      </button>
-                      <i className="bi bi-grip-vertical col-2 text-center"></i>
-                      <button
-                        type="button"
-                        className="sprint-right-btn"
-                        onClick={() => rightButtonAction()}
-                      >
-                        Right
-                      </button>
+                    <div className="card-title-top col-5 text-start my-auto">
+                      <span>translation</span>
                     </div>
                   </div>
+
+                  <div className="check-mark row my-auto">
+                    <i className={statusIcon}></i>
+                  </div>
+
+                  <div className="words-translation row">
+                    <div className="card-title col-5 text-end my-auto">
+                      <h3>{selectWords[cardIndex].word}</h3>
+                    </div>
+
+                    <i className="bi bi-arrow-up-circle-fill text-center col-2"></i>
+
+                    <div className="card-title col-5 text-start my-auto">
+                      <h3>{selectWords[translationIndex].wordTranslate}</h3>
+                    </div>
+                  </div>
+
+                  <hr />
+                  <div className="button-group row">
+                    <button
+                      type="button"
+                      className="sprint-wrong-btn"
+                      onClick={() => wrongButtonAction()}
+                    >
+                      Wrong
+                    </button>
+                    <i className="bi bi-grip-vertical col-2 text-center"></i>
+                    <button
+                      type="button"
+                      className="sprint-right-btn"
+                      onClick={() => rightButtonAction()}
+                    >
+                      Right
+                    </button>
+                  </div>
                 </div>
+              </div>
               </section>
             </div>
           </div>
@@ -241,24 +243,25 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 {rigthAnswers.map((item) => {
                   return (
                     <div key={item.id}>
-                      <button
-                        onClick={() => {
-                          const playWord = new Audio(
-                            `http://localhost:8080/${item.audio}`
-                          );
-                          playWord.play();
-                        }}
-                        className="btn btn-success m-2"
-                      >
-                        ♬
-                      </button>
-                      <span>
-                        {" "}
-                        {item.word}
-                        {" - "}
-                        {item.translate}
-                      </span>
-                    </div>
+
+                    <button
+                      onClick={() => {
+                        const playWord = new Audio(
+                          `http://localhost:8080/${item.audio}`
+                        );
+                        playWord.play();
+                      }}
+                      className="btn btn-success m-2"
+                    >
+                      ♬
+                    </button>
+                    <span>
+                      {" "}
+                      {item.word}
+                      {" - "}
+                      {item.translate}
+                    </span>
+                  </div>
                   );
                 })}
               </div>
@@ -268,24 +271,25 @@ const SprintCardWord = ({ selectWords, onStart, check }) => {
                 {wrongAnswers.map((item) => {
                   return (
                     <div key={item.id}>
-                      <button
-                        onClick={() => {
-                          const playWord = new Audio(
-                            `http://localhost:8080/${item.audio}`
-                          );
-                          playWord.play();
-                        }}
-                        className="btn btn-danger m-2"
-                      >
-                        ♬
-                      </button>
-                      <span>
-                        {" "}
-                        {item.word}
-                        {" - "}
-                        {item.translate}
-                      </span>
-                    </div>
+
+                    <button
+                      onClick={() => {
+                        const playWord = new Audio(
+                          `http://localhost:8080/${item.audio}`
+                        );
+                        playWord.play();
+                      }}
+                      className="btn btn-danger m-2"
+                    >
+                      ♬
+                    </button>
+                    <span>
+                      {" "}
+                      {item.word}
+                      {" - "}
+                      {item.translate}
+                    </span>
+                  </div>
                   );
                 })}
               </div>
