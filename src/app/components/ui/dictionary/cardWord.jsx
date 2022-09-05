@@ -47,12 +47,18 @@ const CardWord = ({ word }) => {
         wrong: 0
       };
     }
+    console.log(wordsUser);
+    const checkWord = !!wordsCurrentUser.find((w) => w.wordId._id === wordId);
+    console.log(wordId);
+
     if (type === "hard") {
       setDifficultWord(true);
       setStudyStatus(0);
       optionalParam.count = 0;
-      if (learnedWord) {
+      console.log(learnedWord && checkWord);
+      if (checkWord) {
         setLearnedWord(false);
+        console.log(optionalParam);
         userServisece.updateWordUser(wordId, "hard", optionalParam);
       } else {
         addWordUser(wordId, "hard", optionalParam);
@@ -62,7 +68,8 @@ const CardWord = ({ word }) => {
       setLearnedWord(true);
       setStudyStatus(100);
       optionalParam.count = 5;
-      if (difficultWord) {
+      console.log(difficultWord, checkWord);
+      if (checkWord) {
         setDifficultWord(false);
         userServisece.updateWordUser(wordId, "easy", optionalParam);
       } else {

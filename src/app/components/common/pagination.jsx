@@ -3,6 +3,7 @@ import Pagination from "react-bootstrap/Pagination";
 import PropTypes from "prop-types";
 
 const PaginationComponent = ({
+  isPageExplored,
   currentPage,
   setCurrentPage,
   handlePageChange,
@@ -57,6 +58,7 @@ const PaginationComponent = ({
           key={pageNumber}
           onClick={() => onPageNumberClick(pageNumber)}
           active={pageNumber === currentPage}
+          color={isPageExplored ? "danger" : ""}
         >
           {pageNumber}
         </Pagination.Item>
@@ -93,62 +95,12 @@ const PaginationComponent = ({
 };
 
 PaginationComponent.propTypes = {
-  currentPage: PropTypes.number.isRequired,
+  isPageExplored: PropTypes.bool,
+  currentPage: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
   setCurrentPage: PropTypes.func.isRequired,
   handlePageChange: PropTypes.func.isRequired,
   alwaysShown: PropTypes.bool
 };
 
 export default PaginationComponent;
-
-// import React from "react";
-// import _ from "lodash";
-// import PropTypes from "prop-types";
-// import Pagination from "react-bootstrap/Pagination";
-
-// const PaginationView = ({ onPageChange, currentPage }) => {
-//   const pageCount = 30;
-//   const pages = _.range(1, pageCount + 1);
-
-//   return (
-//     <Pagination className="d-flex align-items-center justify-content-center">
-//       <Pagination.First />
-//       <Pagination.Prev />
-//       <Pagination.Item>{1}</Pagination.Item>
-//       <Pagination.Ellipsis />
-
-//       <Pagination.Item>{10}</Pagination.Item>
-//       <Pagination.Item>{11}</Pagination.Item>
-//       <Pagination.Item active>{12}</Pagination.Item>
-//       <Pagination.Item>{13}</Pagination.Item>
-
-//       <Pagination.Ellipsis />
-//       <Pagination.Item>{20}</Pagination.Item>
-//       <Pagination.Next />
-//       <Pagination.Last />
-//     </Pagination>
-//     // <nav className="d-flex align-items-center justify-content-center">
-//     //   <ul className="pagination">
-//     //     {pages.map((page) => (
-//     //       <li
-//     //         className={"page-item " + (page === currentPage ? "active" : "")}
-//     //         key={"page_" + page}
-//     //       >
-//     //         <button
-//     //           className="page-link"
-//     //           onClick={() => onPageChange(page - 1)}
-//     //         >
-//     //           {page}
-//     //         </button>
-//     //       </li>
-//     //     ))}
-//     //   </ul>
-//     // </nav>
-//   );
-// };
-
-// PaginationView.propTypes = {
-//   onPageChange: PropTypes.func.isRequired,
-//   currentPage: PropTypes.number.isRequired
-// };
-// export default PaginationView;

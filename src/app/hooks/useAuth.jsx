@@ -20,7 +20,6 @@ const AuthProvaider = ({ children }) => {
   const [currentUser, setUser] = useState();
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
-
   async function signUp({ email, password, name }) {
     const avatar = `https://avatars.dicebear.com/api/pixel-art/${(
       Math.random() + 1

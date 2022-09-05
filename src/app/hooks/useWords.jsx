@@ -15,8 +15,8 @@ const WordProvaider = ({ children }) => {
   const { currentUser } = useAuth();
   const [words, setWords] = useState([]);
   const [wordsUser, setWordsUser] = useState([]);
-  const [group, setGroup] = useState(0);
-  const [page, setPage] = useState(0);
+  const [group, setGroup] = useState(localStorage.getItem("group") || 0);
+  const [page, setPage] = useState(localStorage.getItem("page") || 0);
   const [isPageExplored, setPageExplored] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [isLoadingUserWords, setLoadingUserWords] = useState(true);
@@ -27,11 +27,18 @@ const WordProvaider = ({ children }) => {
       getAllWordsUser();
       getWords(group, page);
     } else {
+      localStorage.removeItem("page");
+      localStorage.removeItem("group");
       getWords(group, page);
       setWordsUser([]);
       setLoadingUserWords(false);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    localStorage.setItem("page", page);
+    localStorage.setItem("group", group);
+  }, [group, page]);
 
   useEffect(() => {
     checkPageExplored(words, wordsUser);
@@ -165,12 +172,15 @@ const WordProvaider = ({ children }) => {
   return (
     <WordContext.Provider
       value={{
+        page,
         group,
         isLoading,
         words,
         wordsUser,
         isLoadingUserWords,
         isPageExplored,
+        setGroup,
+        setPage,
         getWords,
         getAllWordsUser,
         removeWordUser,
