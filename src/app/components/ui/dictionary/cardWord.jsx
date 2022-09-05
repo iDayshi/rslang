@@ -7,7 +7,7 @@ import userServisece from "../../../services/user.service";
 
 const CardWord = ({ word }) => {
   const { currentUser } = useAuth();
-  const { wordsUser, removeWordUser, isLoading } = useWord();
+  const { wordsUser, removeWordUser, addWordUser, isLoading } = useWord();
   const [wordsCurrentUser, setWordsCurrentUser] = useState(wordsUser);
   const [difficultWord, setDifficultWord] = useState(false);
   const [learnedWord, setLearnedWord] = useState(false);
@@ -50,23 +50,23 @@ const CardWord = ({ word }) => {
     if (type === "hard") {
       setDifficultWord(true);
       setStudyStatus(0);
+      optionalParam.count = 0;
       if (learnedWord) {
         setLearnedWord(false);
-        optionalParam.count = 0;
         userServisece.updateWordUser(wordId, "hard", optionalParam);
       } else {
-        userServisece.addWordUser(wordId, "hard", optionalParam);
+        addWordUser(wordId, "hard", optionalParam);
       }
     }
     if (type === "easy") {
       setLearnedWord(true);
       setStudyStatus(100);
+      optionalParam.count = 5;
       if (difficultWord) {
         setDifficultWord(false);
-        optionalParam.count = 3;
         userServisece.updateWordUser(wordId, "easy", optionalParam);
       } else {
-        userServisece.addWordUser(wordId, "easy", optionalParam);
+        addWordUser(wordId, "easy", optionalParam);
       }
     }
   };

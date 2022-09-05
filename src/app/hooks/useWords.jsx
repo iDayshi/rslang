@@ -25,9 +25,10 @@ const WordProvaider = ({ children }) => {
   useEffect(() => {
     if (currentUser) {
       getAllWordsUser();
-      getWords();
+      getWords(group, page);
     } else {
-      getWords();
+      getWords(group, page);
+      setWordsUser([]);
       setLoadingUserWords(false);
     }
   }, [currentUser]);
@@ -66,6 +67,16 @@ const WordProvaider = ({ children }) => {
       const { content } = await userServisece.getWordsUser();
       setWordsUser(content);
       setLoadingUserWords(false);
+      setLoading(false);
+    } catch (error) {
+      errorCatcher(error);
+    }
+  }
+
+  async function addWordUser(wordId, type, optionalParam) {
+    try {
+      userServisece.addWordUser(wordId, type, optionalParam);
+      getAllWordsUser();
       setLoading(false);
     } catch (error) {
       errorCatcher(error);
@@ -163,7 +174,8 @@ const WordProvaider = ({ children }) => {
         getWords,
         getAllWordsUser,
         removeWordUser,
-        gameResultsCheck
+        gameResultsCheck,
+        addWordUser
       }}
     >
       {children}

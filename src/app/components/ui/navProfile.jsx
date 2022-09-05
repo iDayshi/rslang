@@ -10,8 +10,8 @@ const NavProfole = () => {
   };
 
   return (
-    <div className="dropdown" onClick={toggleMenu}>
-      <div className="btn border border-white border-2 dropdown-toggle d-flex align-items-center">
+    <div className="dropdown " onClick={toggleMenu}>
+      <div className="btn border border-white border-2 dropdown-toggle d-flex align-items-center ">
         <div className="text-black me-2">{currentUser.name}</div>
         <img
           src={currentUser.avatar}
@@ -21,7 +21,10 @@ const NavProfole = () => {
         />
       </div>
       <div
-        className={"w-100 text-black  dropdown-menu" + (isOpen ? " show" : "")}
+        style={{ position: "absolute" }}
+        className={
+          "w-100 text-black sandwich dropdown-menu" + (isOpen ? " show" : "")
+        }
       >
         <Link to={`/statistic`} className="dropdown-item">
           Статистика

@@ -7,6 +7,7 @@ import localStorageService, {
 } from "../services/localStorage.service";
 import { useHistory } from "react-router-dom";
 import authService from "../services/auth.service";
+import statisticsService from "../services/statistic.service";
 
 const AuthContext = React.createContext();
 
@@ -37,14 +38,12 @@ const AuthProvaider = ({ children }) => {
       await signIn({ email, password });
     } catch (error) {
       errorCatcher(error);
-      const { code, message } = error;
-      if (code === 400) {
-        if (message === "EMAIL_EXISTS") {
-          const errorObject = {
-            email: "Пользователь с таким Email уже существует"
-          };
-          throw errorObject;
-        }
+      const { status } = error.response;
+      if (status === 417) {
+        const errorObject = {
+          email: "Пользователь с таким Email уже существует"
+        };
+        throw errorObject;
       }
     }
   }
@@ -53,12 +52,11 @@ const AuthProvaider = ({ children }) => {
     try {
       const data = await authService.login({ email, password });
       setTokens(data);
+      statisticsService.updateStatisticsUser();
       await getUserData();
     } catch (error) {
-      console.log(error);
       errorCatcher(error);
       const { code, message } = error;
-      console.log(message);
       if (code === "ERR_BAD_REQUEST") {
         switch (message) {
           case "Request failed with status code 404":
