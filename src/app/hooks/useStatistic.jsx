@@ -39,14 +39,16 @@ const StatisticsProvaider = ({ children }) => {
       setStatistics(content);
       setLoading(false);
     } catch (error) {
-      errorCatcher(error);
+      statisticsService.createStatisticsUser();
+      getStatistics();
+      errorCatcher("Создание пользователя");
     }
   }
 
   async function updateStatistics(
     nameGame,
     learnedNewWordsGame,
-    seriesGame,
+    scoreGame,
     percentageGame,
     gamesPlayedGame
   ) {
@@ -55,13 +57,16 @@ const StatisticsProvaider = ({ children }) => {
         return w.difficulty === "midle";
       });
 
+      const allWordsNew =
+        learnedNewWordsGame + statistics[nameGame].learnedNewWords;
+
       const { content } = await statisticsService.updateStatisticsUser(
         learnedWordsUser.length,
         nameGame,
-        learnedNewWordsGame,
-        seriesGame > statistics[nameGame].series
-          ? seriesGame
-          : statistics[nameGame].series,
+        allWordsNew,
+        scoreGame > statistics[nameGame].score
+          ? scoreGame
+          : statistics[nameGame].score,
         statistics[nameGame].percentage === 0
           ? percentageGame
           : (statistics[nameGame].percentage + percentageGame) / 2,
@@ -75,8 +80,7 @@ const StatisticsProvaider = ({ children }) => {
   }
 
   function errorCatcher(error) {
-    const { data } = error.response;
-    setError(data);
+    setError(error);
   }
 
   return (

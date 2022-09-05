@@ -2,15 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/ui/footer";
 import { useAudioCall } from "../hooks/useAudioCall";
+import { useSprintWord } from "../hooks/useSprintWords";
 
 const MainPage = () => {
   const { setWordsGameDictionary } = useAudioCall();
+  const { setWordsGameSprintDictionary } = useSprintWord();
 
   return (
     <>
-      <div className="container">
+      <div>
         <main>
-          <div className="main_wrapper">
+          <div className="main_wrapper p-5">
             <div className="main_info">
               <h1 className="logo">RSLang</h1>
               <div className="promo">
@@ -42,7 +44,13 @@ const MainPage = () => {
                 </button>
               </Link>
 
-              <Link className="text-reset text-decoration-none" to="/sprint">
+              <Link
+                className="text-reset text-decoration-none"
+                to="/sprint"
+                onClick={() => {
+                  setWordsGameSprintDictionary([]);
+                }}
+              >
                 <button className="main_button">
                   Мини-игра <b>Спринт</b>
                 </button>

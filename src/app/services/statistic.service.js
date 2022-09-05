@@ -14,7 +14,7 @@ const statisticsService = {
     learnedWordsUser,
     nameGame,
     learnedNewWordsGame,
-    seriesGame,
+    scoreGame,
     percentageGame,
     gamesPlayedGame
   ) => {
@@ -25,13 +25,13 @@ const statisticsService = {
         learnedWords: 0,
         gamesAudioCall: {
           learnedNewWords: 0,
-          series: 0,
+          score: 0,
           percentage: 0,
           gamesPlayed: 0
         },
         gamesSprint: {
           learnedNewWords: 0,
-          series: 0,
+          score: 0,
           percentage: 0,
           gamesPlayed: 0
         }
@@ -42,12 +42,43 @@ const statisticsService = {
         learnedWords: learnedWordsUser || 0,
         [nameGame]: {
           learnedNewWords: learnedNewWordsGame || 0,
-          series: seriesGame || 0,
-          percentage: percentageGame || 0,
+          score: scoreGame || 0,
+          percentage: Math.floor(percentageGame) || 0,
           gamesPlayed: gamesPlayedGame || 0
         }
       };
     }
+    const { data } = await httpServise.put(
+      userStatisticsEndpoint + localStorageService.getUserId() + `/statistics`,
+      newParams,
+      {
+        timestamps: { createdAt: "created_at" }
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorageService.getAccessToken()}`
+        }
+      }
+    );
+    return data;
+  },
+  createStatisticsUser: async () => {
+    const newParams = {
+      userId: localStorageService.getUserId(),
+      learnedWords: 0,
+      gamesAudioCall: {
+        learnedNewWords: 0,
+        score: 0,
+        percentage: 0,
+        gamesPlayed: 0
+      },
+      gamesSprint: {
+        learnedNewWords: 0,
+        score: 0,
+        percentage: 0,
+        gamesPlayed: 0
+      }
+    };
     const { data } = await httpServise.put(
       userStatisticsEndpoint + localStorageService.getUserId() + `/statistics`,
       newParams,

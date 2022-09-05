@@ -21,9 +21,9 @@ const SprintTimer = () => {
     <div className="timer-wrapper">
       <CountdownCircleTimer
         isPlaying
-        duration={60}
+        duration={30}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-        colorsTime={[60, 40, 20, 0]}
+        colorsTime={[30, 20, 10, 0]}
         onComplete={() => ({ shouldRepeat: false, delay: 1 })}
       >
         {renderTime}

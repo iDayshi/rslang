@@ -7,7 +7,6 @@ import localStorageService, {
 } from "../services/localStorage.service";
 import { useHistory } from "react-router-dom";
 import authService from "../services/auth.service";
-import statisticsService from "../services/statistic.service";
 
 const AuthContext = React.createContext();
 
@@ -51,7 +50,6 @@ const AuthProvaider = ({ children }) => {
     try {
       const data = await authService.login({ email, password });
       setTokens(data);
-      statisticsService.updateStatisticsUser();
       await getUserData();
     } catch (error) {
       errorCatcher(error);

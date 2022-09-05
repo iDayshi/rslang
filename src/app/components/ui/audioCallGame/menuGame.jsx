@@ -18,7 +18,9 @@ const MenuGame = ({ onStart, check }) => {
     <div className="container audiocall_page">
       <div className="top_line">
         <h2 className="audio_call_name">Аудиовызов</h2>
-        <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
+        <button className="audio-info" onClick={() => setModalShow(true)}>
+          <i className="bi bi-info-circle"></i>
+        </button>
       </div>
 
       <section className="text-center white_bcg">

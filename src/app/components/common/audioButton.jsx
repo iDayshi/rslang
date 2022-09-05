@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { BASE_PATH } from "../../../constants";
 
 const AudioButton = ({ urls }) => {
   const [audios, setAudio] = useState([]);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    setAudio(urls.map((url) => new Audio(`http://localhost:8080/${url}`)));
+    setAudio(urls.map((url) => new Audio(`${BASE_PATH}/${url}`)));
   }, []);
 
   useEffect(() => {

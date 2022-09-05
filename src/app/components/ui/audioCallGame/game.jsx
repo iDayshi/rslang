@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { BASE_PATH } from "../../../../constants";
 
 const Game = ({ roundWords, onCheck, onSkipQuestion, correctPosition }) => {
   const spell = (type) => {
     const playWord = new Audio(
-      `http://localhost:8080/${roundWords[correctPosition][type]}`
+      `${BASE_PATH}/${roundWords[correctPosition][type]}`
     );
     playWord.playbackRate = 0.8;
     playWord.play();

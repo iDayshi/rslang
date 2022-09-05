@@ -4,29 +4,34 @@ import { useStatistic } from "../../../hooks/useStatistic";
 import { useAuth } from "../../../hooks/useAuth";
 import { BASE_PATH } from "../../../../constants";
 
-const Result = ({ correctAnswers, score, wrongAnswers, newGame, series }) => {
+const ResultSprint = ({
+  correctAnswers,
+  wrongAnswers,
+  getResultPhrase,
+  score,
+  allAnswers
+}) => {
   const { updateStatistics } = useStatistic();
   const { currentUser } = useAuth();
-  const percentage = Math.floor((100 * correctAnswers.length) / 10);
-  console.log(percentage);
+  const percentage = Math.floor((100 * correctAnswers.length) / allAnswers);
+
   useEffect(() => {
     if (currentUser) {
-      updateStatistics("gamesAudioCall", 10, score, percentage);
+      updateStatistics("gamesSprint", allAnswers, score, percentage);
     }
   }, [correctAnswers]);
 
   return (
-    <div className="container">
-      <div className="top_line">
-        <h2 className="audio_call_name">Аудиовызов</h2>
-      </div>
-      <section className="audiocoll_results">
-        <h3 className="audiocall_header"> Результаты игры </h3>
-        <div>
-          {percentage} % правильных ответов. {correctAnswers.length} из 10 слов
-          верны
-        </div>
-        <div>{series + " правильных ответов подряд"}</div>
+    <div className="card-container d-flex flex-column justify-content-around align-items-center">
+      <div className="card col-xs-12 col-sm-6 col-md-4 w-100">
+        <h1>
+          Ваш счёт: {score} - {getResultPhrase()}
+        </h1>
+        <h5>
+          Во время игры было использованно {allAnswers} слов.{" "}
+          {correctAnswers.length} слов(а) были верны, процент верных ответов{" "}
+          {percentage || 0} %
+        </h5>
         <div>
           <h4 className="audiocall_header_small">Правильные ответы:</h4>
           {correctAnswers.map((word) => {
@@ -73,20 +78,18 @@ const Result = ({ correctAnswers, score, wrongAnswers, newGame, series }) => {
             );
           })}
         </div>
-        <button onClick={newGame} type="button" className="audiocall_button">
-          Начать игру
-        </button>
-      </section>
+      </div>
     </div>
   );
 };
 
-Result.propTypes = {
+ResultSprint.propTypes = {
   correctAnswers: PropTypes.array,
   wrongAnswers: PropTypes.array,
-  newGame: PropTypes.func,
+  getResultPhrase: PropTypes.func,
   series: PropTypes.number,
-  score: PropTypes.number
+  score: PropTypes.number,
+  allAnswers: PropTypes.number
 };
 
-export default Result;
+export default ResultSprint;

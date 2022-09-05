@@ -3,7 +3,7 @@ import Footer from "../../components/ui/footer";
 
 const AboutTeam = () => {
   return (
-    <div className="container">
+    <>
       <div className="team_wrapper">
         <article className="teammate">
           <img
@@ -17,7 +17,7 @@ const AboutTeam = () => {
               <i className="bi bi-github"></i> iDayshi{" "}
             </a>
           </div>
-          <p>Teamlead. Учебник и словарь. Аутентификация. Статистика. </p>
+          <p>Teamlead.Учебник и словарь.Аутентификация.Статистика.</p>
           <p>
             <i className="bi bi-info-circle"></i>
             <i className="bi">Нравится розовый цвет</i>
@@ -57,7 +57,7 @@ const AboutTeam = () => {
               <i className="bi bi-github"></i> 4Quark{" "}
             </a>
           </div>
-          <p>Игра Аудиовызов. Главная страница и инфо. Дизайн и красота. </p>
+          <p>Игра Аудиовызов.Главная страница и инфо.Дизайн и красота.</p>
           <p>
             <i className="bi bi-info-circle"></i>
             <i className="bi">Нравится логотип React</i>
@@ -65,9 +65,8 @@ const AboutTeam = () => {
           <div className="unicorn3"></div>
         </article>
       </div>
-
       <Footer />
-    </div>
+    </>
   );
 };
 

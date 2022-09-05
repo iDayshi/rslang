@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useWord } from "../../hooks/useWords";
 import GroupWords from "../common/groupWords";
 import PaginationComponent from "../common/pagination";
@@ -6,6 +6,7 @@ import Footer from "../ui/footer";
 import CardWordList from "../ui/dictionary/wordCardsList";
 import { useAudioCall } from "../../hooks/useAudioCall";
 import ModalWindow from "../common/modalDictionary";
+import { useSprintWord } from "../../hooks/useSprintWords";
 
 const DictionaryPage = () => {
   const {
@@ -22,6 +23,8 @@ const DictionaryPage = () => {
     isPageExplored
   } = useWord();
   const { setWordsGameDictionary } = useAudioCall();
+  const { getCurrentWordsDictionary } = useSprintWord();
+  const [modalShow, setModalShow] = useState(false);
 
   const backgroundColors = [
     "108, 117, 125,",
@@ -36,6 +39,7 @@ const DictionaryPage = () => {
 
   useEffect(() => {
     setWordsGameDictionary(words);
+    getCurrentWordsDictionary(group, page);
   }, [words]);
 
   const handlePageChange = (pageIndex) => {
@@ -49,14 +53,14 @@ const DictionaryPage = () => {
     groupIndex === 6 ? getAllWordsUser() : getWords(groupIndex, 0);
   };
 
-  const [modalShow, setModalShow] = useState(false);
-
   return (
     <>
       <div className="d-flex flex-column align-items-center justify-content-center m-3">
-        <div className="top_line">
+        <div className="top_line justify-content-center">
           <h2 className="audio_call_name">Учебник</h2>
-          <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
+          <button className="audio-info" onClick={() => setModalShow(true)}>
+            <i className="bi bi-info-circle"></i>
+          </button>
         </div>
         <ModalWindow show={modalShow} onHide={() => setModalShow(false)} />
         <GroupWords onGroupChange={handleGroupChange} />
