@@ -13,7 +13,7 @@ import startSound from "../ui/sprintPage/sounds/start.mp3";
 const SprintPage = () => {
   const { allGroupWords, getAllGroupWords } = useSprintWord();
   const [levelChoosed, setLevelChoosed] = useState(false);
-  const [modalShow, setModalShow] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
 
   const playStart = () => {
     new Audio(startSound).play();
@@ -26,8 +26,12 @@ const SprintPage = () => {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center m-5">
-      <h1 className="text-center">Sprint-Game</h1>
+    <div className="container sprint_page">
+      <div className="top_line">
+        <h2 className="audio_call_name">Sprint-Game</h2>
+        <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
+      </div>
+      <section className="text-center white_bcg">
       <Disable disabled={levelChoosed}>
         <SprintGroupButtons onGroupChange={handleGroupChange} />
       </Disable>
@@ -39,14 +43,14 @@ const SprintPage = () => {
               <SprintCardWord selectWords={allGroupWords.flat()} />
             </div>
           ) : (
-            <h2 className="text-center level-title">
+            <h4 className="sprint_header">
               Please choose your level from above
-            </h2>
+            </h4>
           )}
         </div>
       </div>
       {levelChoosed ? (
-        <div className="footer-buttons d-flex m-3">
+        <div className="sprint-buttons">
           <button
             type="button"
             className="btn btn-outline-danger btn-lg"
@@ -63,6 +67,7 @@ const SprintPage = () => {
       ) : (
         <></>
       )}
+      </section>
     </div>
   );
 };
