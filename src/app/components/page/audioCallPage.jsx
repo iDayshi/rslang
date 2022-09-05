@@ -3,6 +3,7 @@ import { useAudioCall } from "../../hooks/useAudioCall";
 import MenuGame from "../ui/audioCallGame/menuGame";
 import Question from "../ui/audioCallGame/question";
 import Result from "../ui/audioCallGame/result";
+import { BASE_PATH } from "../../../constants";
 
 const AudioCallPage = () => {
   const {
@@ -104,7 +105,7 @@ const AudioCallPage = () => {
     quizWordsState[rightWordPosition].right = true;
     setQuizWords(quizWordsState);
     const playWord = new Audio(
-      `http://localhost:8080/${quizWordsState[rightWordPosition].audio}`
+      `${BASE_PATH}/${quizWordsState[rightWordPosition].audio}`
     );
     playWord.play();
   };

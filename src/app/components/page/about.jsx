@@ -3,7 +3,7 @@ import Footer from "../../components/ui/footer";
 
 const AboutApp = () => {
   return (
-    <div className="container">
+    <>
       <div className="about_wrapper">
         <section className="about-promo">
           <b>RS Lang</b> – приложение для изучения английского языка с техникой
@@ -16,7 +16,7 @@ const AboutApp = () => {
           <div className="groups_wrapper">
             <button className="about_info_btn">
               <b>Изучай</b>
-              <p>Учебник RSLang помогает быстро запоминать новые слова. </p>
+              <p>Учебник RSLang помогает быстро запоминать новые слова.</p>
             </button>
             <button className="about_info_btn">
               <b>Запоминай</b>
@@ -57,10 +57,10 @@ const AboutApp = () => {
               <span>
                 Мини-игра <b>Аудиовызов</b> Развивает навык аудирования.
                 Необходимо отгадать максимальное количество озвученных диктором
-                слов. Для ответа используйте мышь, либо цифры 1 - 5
-                клавиатуре. Пропустить слово - пробел, перейти к следующему
-                 - «Enter». Большая круглая кнопка повторит слово, а
-                маленькая - озвучит пример.{" "}
+                слов. Для ответа используйте мышь, либо цифры 1 - 5 клавиатуре.
+                Пропустить слово - пробел, перейти к следующему - «Enter».
+                Большая круглая кнопка повторит слово, а маленькая - озвучит
+                пример.{" "}
               </span>
             </article>
             <article className="article-wrapper">
@@ -73,9 +73,8 @@ const AboutApp = () => {
           </div>
         </section>
       </div>
-
       <Footer />
-    </div>
+    </>
   );
 };
 

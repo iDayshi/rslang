@@ -26,8 +26,8 @@ function App() {
         <WordProvaider>
           <StatisticsProvaider>
             <AudioCallProvaider>
-              <NavBar />
               <SprintWordProvaider>
+                <NavBar />
                 <Switch>
                   <Route path="/logout" component={LogOut} />
                   <Route path="/login/:type?" component={LoginPage} />

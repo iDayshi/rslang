@@ -15,7 +15,7 @@ const Statistic = ({ name }) => {
           </div>
           <div className="row text-center white_bcg_statistic statistic_page">
             <div className="col-xl-3 col-sm-6 col-12 mb-0">
-              <div className="card">
+              <div className="card cardStat">
                 <div
                   className="card-body"
                   style={{
@@ -57,7 +57,7 @@ const Statistic = ({ name }) => {
               </div>
             </div>
             <div className="col-xl-3 col-sm-6 col-12 mb-0">
-              <div className="card">
+              <div className="card cardStat">
                 <div
                   className="card-body"
                   style={{
@@ -93,7 +93,11 @@ const Statistic = ({ name }) => {
                         }}
                         className="mb-0 "
                       >
-                        <strong>Процент правильных ответов</strong>
+                        <strong>
+                          {name === "Пользователя"
+                            ? "Средний процент"
+                            : "Процент правильных ответов"}
+                        </strong>
                       </p>
                     </div>
                   </div>
@@ -101,7 +105,7 @@ const Statistic = ({ name }) => {
               </div>
             </div>
             <div className="col-xl-3 col-sm-6 col-12 mb-0">
-              <div className="card">
+              <div className="card cardStat">
                 <div
                   className="card-body"
                   style={{
@@ -125,13 +129,13 @@ const Statistic = ({ name }) => {
                     <div className="text-end">
                       <h3 className="text-info">
                         {name === "Пользователя"
-                          ? statistics.gamesAudioCall.series >
-                            statistics.gamesSprint.series
-                            ? statistics.gamesAudioCall.series
-                            : statistics.gamesSprint.series
+                          ? statistics.gamesAudioCall.score >
+                            statistics.gamesSprint.score
+                            ? statistics.gamesAudioCall.score
+                            : statistics.gamesSprint.score
                           : name === "Аудиовызов"
-                          ? statistics.gamesAudioCall.series
-                          : statistics.gamesSprint.series}
+                          ? statistics.gamesAudioCall.score
+                          : statistics.gamesSprint.score}
                       </h3>
                       <p
                         style={{
@@ -139,7 +143,7 @@ const Statistic = ({ name }) => {
                         }}
                         className="mb-0"
                       >
-                        <strong>Серия правильных ответов</strong>
+                        <strong>Лучший результат</strong>
                       </p>
                     </div>
                   </div>
@@ -147,7 +151,7 @@ const Statistic = ({ name }) => {
               </div>
             </div>
             <div className="col-xl-3 col-sm-6 col-12 mb-0">
-              <div className="card">
+              <div className="card cardStat">
                 <div
                   className="card-body"
                   style={{
@@ -183,7 +187,11 @@ const Statistic = ({ name }) => {
                         }}
                         className="mb-0"
                       >
-                        <strong>Игр сыграно</strong>
+                        <strong>
+                          {name === "Пользователя"
+                            ? "Всего сыграно игр"
+                            : "Игр сыграно"}
+                        </strong>
                       </p>
                     </div>
                   </div>
@@ -193,7 +201,7 @@ const Statistic = ({ name }) => {
           </div>
         </section>
       ) : (
-        "loading"
+        "Ожидание....."
       )}
     </>
   );

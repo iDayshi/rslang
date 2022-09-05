@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useWord } from "../../../hooks/useWords";
 import { useAuth } from "../../../hooks/useAuth";
+import { BASE_PATH } from "../../../../constants";
 
 const Answer = ({ isRight, correctAnswer, onNextQuestion }) => {
   const { gameResultsCheck } = useWord();
@@ -27,14 +28,14 @@ const Answer = ({ isRight, correctAnswer, onNextQuestion }) => {
         <div className="audiocall_wordcard">
           <img
             className="audiocall_word_img"
-            src={`http://localhost:8080/${correctAnswer.image}`}
+            src={`${BASE_PATH}/${correctAnswer.image}`}
             alt={correctAnswer.word}
           />
           <div>
             <button
               onClick={() => {
                 const playWord = new Audio(
-                  `http://localhost:8080/${correctAnswer.audio}`
+                  `${BASE_PATH}/${correctAnswer.audio}`
                 );
                 playWord.play();
               }}

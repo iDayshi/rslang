@@ -11,6 +11,9 @@ export const useSprintWord = () => {
 
 const SprintWordProvaider = ({ children }) => {
   const [allGroupWords, setAllGroupWords] = useState([]);
+  const [wordsGameSprintDictionary, setWordsGameSprintDictionary] = useState(
+    []
+  );
   const [group, setGroup] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,6 +24,30 @@ const SprintWordProvaider = ({ children }) => {
       setError(null);
     }
   }, [error]);
+
+  async function getCurrentWordsDictionary(groupSelect, page) {
+    if (!isLoading) {
+      setGroup(groupSelect);
+    }
+    setWordsGameSprintDictionary([]);
+    let pageIndex = Number(page);
+    while (pageIndex < Number(page) + 5) {
+      try {
+        const { content } = await wordServisece.get(groupSelect, pageIndex);
+        const shuffledArr = (array) => array.sort(() => 0.5 - Math.random());
+        setWordsGameSprintDictionary((wordsGameDictionary) => [
+          ...wordsGameDictionary,
+          shuffledArr(content)
+        ]);
+        if (pageIndex === pageIndex + 4) {
+          setLoading(false);
+        }
+        pageIndex += 1;
+      } catch (error) {
+        errorCatcher(error);
+      }
+    }
+  }
 
   async function getAllGroupWords(groupSelect) {
     if (!isLoading) {
@@ -54,7 +81,15 @@ const SprintWordProvaider = ({ children }) => {
     setError(message);
   }
   return (
-    <SprintWordContext.Provider value={{ allGroupWords, getAllGroupWords }}>
+    <SprintWordContext.Provider
+      value={{
+        allGroupWords,
+        wordsGameSprintDictionary,
+        getAllGroupWords,
+        getCurrentWordsDictionary,
+        setWordsGameSprintDictionary
+      }}
+    >
       {children}
     </SprintWordContext.Provider>
   );

@@ -59,7 +59,9 @@ const Question = ({
       <ModalWindow show={modalShow} onHide={() => setModalShow(false)} />
       <div className="top_line">
         <h2 className="audio_call_name">Аудиовызов</h2>
-        <button className="audio-info" onClick={() => setModalShow(true)}><i className="bi bi-info-circle"></i></button>
+        <button className="audio-info" onClick={() => setModalShow(true)}>
+          <i className="bi bi-info-circle"></i>
+        </button>
       </div>
       <h4 className="audiocall_header_small">
         Вопрос {wordCounter + 1} из 10. Счет: {score}

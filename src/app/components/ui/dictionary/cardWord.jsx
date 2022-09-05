@@ -4,6 +4,7 @@ import AudioButton from "../../common/audioButton";
 import { useAuth } from "../../../hooks/useAuth";
 import { useWord } from "../../../hooks/useWords";
 import userServisece from "../../../services/user.service";
+import { BASE_PATH } from "../../../../constants";
 
 const CardWord = ({ word }) => {
   const { currentUser } = useAuth();
@@ -47,18 +48,15 @@ const CardWord = ({ word }) => {
         wrong: 0
       };
     }
-    console.log(wordsUser);
+
     const checkWord = !!wordsCurrentUser.find((w) => w.wordId._id === wordId);
-    console.log(wordId);
 
     if (type === "hard") {
       setDifficultWord(true);
       setStudyStatus(0);
       optionalParam.count = 0;
-      console.log(learnedWord && checkWord);
       if (checkWord) {
         setLearnedWord(false);
-        console.log(optionalParam);
         userServisece.updateWordUser(wordId, "hard", optionalParam);
       } else {
         addWordUser(wordId, "hard", optionalParam);
@@ -68,7 +66,6 @@ const CardWord = ({ word }) => {
       setLearnedWord(true);
       setStudyStatus(100);
       optionalParam.count = 5;
-      console.log(difficultWord, checkWord);
       if (checkWord) {
         setDifficultWord(false);
         userServisece.updateWordUser(wordId, "easy", optionalParam);
@@ -101,7 +98,7 @@ const CardWord = ({ word }) => {
             <img
               alt="image"
               className="img-fluid rounded-0"
-              src={`http://localhost:8080/${word.image || word.wordId.image}`}
+              src={`${BASE_PATH}/${word.image || word.wordId.image}`}
             />
           </div>
           <div className="col-12 ml-md-auto col-md-7 col-lg-6 pb-5 pb-md-0 p-2">

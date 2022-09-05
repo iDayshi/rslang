@@ -1,5 +1,5 @@
 @import url("./app/styles/timer.css");
-@import url("./app/styles/sprintCard.css");
+@import url("./app//styles/sprintCard.css");
 
 @font-face {
   font-family: SuperLiam;
@@ -23,12 +23,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.aut-form {
-  background-image: url(../assets/form-bcg.jpeg);
-  background-size: cover;
-  font-family: Montserrat-Regular;
 }
 
 .bi {
@@ -74,6 +68,23 @@ code {
 
 .sandwich-el {
   margin: 20px !important;
+}
+
+.aut-form {
+  background-image: url(../assets/form-bcg.jpeg);
+  background-size: cover;
+  font-family: Montserrat-Regular;
+}
+
+.dictionary-about {
+  background-image: url(../assets/about_book.png);
+  width: 400px;
+  height: 199px;
+  background-size: 400px;
+}
+
+.dictionary-description {
+  margin: 0;
 }
 
 /* _________ MAIN Page _________ */
@@ -488,33 +499,7 @@ code {
   background-color: #83968081;
 }
 
-.statistic_page {
-  border: 5px solid #c5c5c525;
-  background-image: url(http://localhost:3000/static/media/audio_bcg.9a08e5f9dc129c010bec.png);
-  background-size: contain;
-  display: flex;
-  align-items: center;
-}
 
-.white_bcg_statistic {
-  border: 3px solid #c5c5c525;
-  background-color: #ffffffc4;
-  padding: 25px;
-  margin: 20px;
-}
-
-.card {
-  padding: 1rem;
-  --bs-bg-opacity: 0.1;
-  background-color: rgba(
-    var(--bs-success-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
-}
-
-.cardStat {
-  background-color: rgba(255, 255, 255) !important;
-}
 
 /* _________ MEDIA _________ */
 
