@@ -488,6 +488,13 @@ code {
   background-color: #83968081;
 }
 
+.dictionary-about {
+  background-image: url(../assets/about_book.png);
+  width: 400px;
+  height: 199px;
+  background-size: 400px;
+}
+
 .statistic_page {
   border: 5px solid #c5c5c525;
   background-image: url(https://rslang-idayshi.herokuapp.com/static/media/audio_bcg.9a08e5f9dc129c010bec.png);
