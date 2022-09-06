@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/ui/footer";
 import { useAudioCall } from "../hooks/useAudioCall";
+import { useAuth } from "../hooks/useAuth";
 import { useSprintWord } from "../hooks/useSprintWords";
 
 const MainPage = () => {
   const { setWordsGameDictionary } = useAudioCall();
   const { setWordsGameSprintDictionary } = useSprintWord();
+  const { currentUser } = useAuth();
 
   return (
     <>
@@ -55,10 +57,16 @@ const MainPage = () => {
                   Мини-игра <b>Спринт</b>
                 </button>
               </Link>
-
-              <Link className="text-reset text-decoration-none" to="/statistic">
-                <button className="main_button">Статистика</button>
-              </Link>
+              {currentUser ? (
+                <Link
+                  className="text-reset text-decoration-none"
+                  to="/statistic"
+                >
+                  <button className="main_button">Статистика</button>
+                </Link>
+              ) : (
+                <></>
+              )}
 
               <div className="d-flex justify-content-center">
                 <Link className="text-reset text-decoration-none" to="/about">
