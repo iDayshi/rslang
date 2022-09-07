@@ -8,7 +8,6 @@ const Result = ({ correctAnswers, score, wrongAnswers, newGame, series }) => {
   const { updateStatistics } = useStatistic();
   const { currentUser } = useAuth();
   const percentage = Math.floor((100 * correctAnswers.length) / 10);
-  console.log(percentage);
   useEffect(() => {
     if (currentUser) {
       updateStatistics("gamesAudioCall", 10, score, percentage);

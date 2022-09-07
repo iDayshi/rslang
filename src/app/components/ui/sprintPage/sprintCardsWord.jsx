@@ -46,7 +46,7 @@ const SprintCardWord = ({ selectWords }) => {
     setTimeout(() => {
       setFinished(true); // hide main card and show result
       setCountdown(true);
-    }, 63500);
+    }, 33500);
   })();
 
   // random choosing true or fake translation
@@ -71,7 +71,6 @@ const SprintCardWord = ({ selectWords }) => {
     const fakeTranslationIndex = Math.floor(
       Math.random() * (selectWords.length - 1)
     );
-    console.log(fakeTranslationIndex);
 
     setCardIndex(cardIndex + 1);
     defineIsFake();
@@ -202,7 +201,9 @@ const SprintCardWord = ({ selectWords }) => {
                   <button
                     type="button"
                     className="btn btn-danger btn-md col-5"
-                    onClick={() => wrongButtonAction()}
+                    onClick={() => {
+                      wrongButtonAction();
+                    }}
                   >
                     Неверно
                   </button>
@@ -210,15 +211,15 @@ const SprintCardWord = ({ selectWords }) => {
                   <button
                     type="button"
                     className="btn btn-success btn-md col-5"
-                    onClick={() => rightButtonAction()}
+                    onClick={() => {
+                      rightButtonAction();
+                    }}
                   >
                     Верно
                   </button>
                 </div>
                 <div className="keboard-button-group row">
-                  <h5 className="col-5 text-center">нажмите W</h5>
                   <i className="bi bi-grip-vertical col-2 text-center"></i>
-                  <h5 className="col-5 text-center">нажмите R</h5>
                 </div>
               </div>
             </div>
